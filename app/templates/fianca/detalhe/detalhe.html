@@ -1,0 +1,168 @@
+<style>
+.detalhamento .form-group{
+	margin-bottom: 2px !important;
+}
+
+.detalhamento span{
+	padding-right: 10px;
+}
+
+</style>
+<div class="row row-center">
+	<div class="col-sm-10 col-center">
+		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
+			<div class="panel-heading">
+				<div class="panel-title"><strong>Código SJ: {{fiancaCtrl.registro.codigo}} - {{fiancaCtrl.registro.inquilino}}</strong></div>
+			</div>
+
+	<div class="row" style="padding: 10px;">
+		<!-- Card Liberty -->
+		<div class="card col-sm-3">
+		<div style="text-align: center;">
+		  <img class="card-img-top" src="./templates/fianca/img/liberty_icone.png" alt="Card image cap" style="width: 20%;">
+		</div>
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_liberty}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_liberty}}</p>
+		  </div>
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.voltarParaListagem()" ng-if="fiancaCtrl.registro.situacao_analise_liberty.toLowerCase().includes('aprovad')">Contratar
+		  <span aria-hidden="true"></span> </button>
+		</div>
+		
+		<!-- Card Porto -->
+		<div class="card col-sm-3">
+		<div style="text-align: center;">
+		  <img class="card-img-top" src="./templates/fianca/img/porto_icone.png" alt="Card image cap" style="width: 20%;">
+	    </div>
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_porto}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_porto}}</p>
+		  </div>
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.voltarParaListagem()" ng-if="fiancaCtrl.registro.situacao_analise_porto.toLowerCase().includes('aprovad')">Contratar
+		  <span aria-hidden="true"></span> </button>
+		</div>
+		
+		<!-- Card Too -->
+		<div class="card col-sm-3">
+		<div style="text-align: center;">
+		  <img class="card-img-top" src="./templates/fianca/img/too_icone.png" alt="Card image cap" style="width: 20%;">
+		</div>
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_too}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_too}}</p>
+		  </div>
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.voltarParaListagem()" ng-if="fiancaCtrl.registro.situacao_analise_too.toLowerCase().includes('aprovad')">Contratar
+		  <span aria-hidden="true"></span> </button>
+		</div>
+		
+		<!-- Card Apólice -->
+		<div class="card col-sm-3">
+		  <div class="row card-body">
+			<label class="col-xs-11 control-label label-thin">Apólice: {{fiancaCtrl.registro.apolice.includes('ALL') ? '' : fiancaCtrl.registro.apolice}}</label>
+			<label class="col-xs-11 control-label label-thin">Seguradora: {{fiancaCtrl.registro.apolice.includes('ALL') ? '' : fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}</label>
+		  </div>
+		</div>
+	</div>
+
+			<div class="panel-body fixed-panel">
+
+					<div class="bs-example">
+						<div class="panel-group" id="accordion">
+						
+						
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseTwo">
+										Dados Pretendente <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseTwo panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados do pretendente -->
+										<div data-ng-include="'./templates/fianca/detalhe/dadosPretendenteDetalhe.html'"></div> 
+										
+									</div>
+								</div>
+							</div>
+						
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseOne">
+										Residência Atual <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseOne panel-collapse collapse">
+									<div class="panel-body">												
+										<!-- Detalhamento dados residenciais -->
+										<div data-ng-include="'./templates/fianca/detalhe/dadosResidenciaisDetalhe.html'"></div> 
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseNine">
+										Dados Profissionais <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseNine panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados profissionais -->
+										<div data-ng-include="'./templates/fianca/detalhe/dadosProfissionaisDetalhe.html'"></div>								
+									</div>
+								</div>
+							</div>
+							
+														
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseEspecial">
+										Imóvel Pretendido <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseEspecial panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados imóvel -->
+										<div data-ng-include="'./templates/fianca/detalhe/dadosImovelDetalhe.html'"></div>																				
+									</div>
+								</div>
+							</div>
+												
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseAutomacao">
+										Composição Renda <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseAutomacao panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados composição de renda -->
+										<div data-ng-include="'./templates/fianca/detalhe/composicaoRendaDetalhe.html'"></div> 
+																					
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+			
+			</div>
+		</div>
+		
+		<!-- Importe dos botoes do Form -->
+					<div class="form-group last">
+						<div class="col-md-12 text-center">
+							 <button class="btn btn-primary" 
+						      ng-click="fiancaCtrl.voltarParaListagem()">Voltar a listagem <span aria-hidden="true"></span>
+						      </button>
+						</div>
+				</div>
+
+	</div>
+	
+</div>

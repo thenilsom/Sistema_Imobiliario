@@ -1,0 +1,267 @@
+/************* Estilos Padrão do Angular Material********************/
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size:14px;
+  height:100%;
+  margin: 0px;
+  padding: 0px;
+  background-color: #ffffff !important;
+}
+
+header {
+  background-size: cover;
+  background-position: top center;
+  height: 100%;
+}
+
+footer {
+  /*background-color: #133454;*/
+}
+
+h1 strong{
+  font-size: 55px;
+  font-weight: 500;
+}
+
+.nav>li>a {
+    background: #EEEEEE;
+    color: #686367; 
+}
+
+.nav-pills>li>a {
+  border-top-right-radius: 2em !important;
+}
+
+/*textos maiusculos nos inputs text*/
+input[type="text"][upper] {
+    text-transform: uppercase;
+}
+
+.margin-lista{
+  margin-left: 8%;
+  margin-right: 8%
+}
+
+/*classe usada para renderizar bordas vermelhas nos inputs*/
+.errorAttribute {
+    border-bottom-color: #f56a67 !important;
+    border-left-color: #f56a67 !important;
+    border-right-color: #f56a67 !important;
+    border-top-color: #f56a67 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.borda{
+  border: solid 4px;
+  border-radius: 19px;
+  padding: 15px;
+}
+
+.borda-formulario{
+  border: 1px solid #B0B0B0;
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: #E2E2E2;
+}
+
+.fundo-formulario{
+   background-color: #E2E2E2;
+   color: #717079;
+}
+
+/*fundo disabled para campos de valor*/
+.disabled-value{
+  background-color: #9c9999 !important;
+  color: white !important;
+  font-size: initial !important;
+  font-weight: bold !important;
+}
+
+#borda-icones{
+  border: solid 1px;
+  border-radius: 5px;
+  border-bottom: 0px;
+  width: 59%;
+  height: 70%;
+  position: absolute;
+  top: 0%;
+  left: 21%;
+  z-index: -1;
+}
+
+.glyphicon{
+  padding-right: 16px;
+}
+
+
+.text-white{
+  color: #ffffff !important;
+}
+
+.tam-2{
+  font-size: 44px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+} 
+
+.tam-3{
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/*para dispositivos com resolução até 1280px*/
+@media(max-width: 1280px) {
+ 
+  h1 strong{
+    font-size: 40px;
+    font-weight: 500;
+  }
+
+  
+  .md-display-3 {
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 64px;
+  }
+
+  .tam-2{
+    font-size: 28px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  } 
+   
+
+}
+
+/*para dispositivos com resolução até 500px*/
+@media(max-width: 500px) {
+  
+  #btnEnviar{
+    max-width: 50%;
+  }
+
+  .md-display-2 {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 40px;
+  }
+
+  .tam-3{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .icon10 {
+    width: 90px;
+    height: 90px;
+  }
+
+  .icon5 {
+  width: 50px;
+  height: 50px;
+  }
+}
+
+.principal-banner {
+  color: #FFF;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: .3s;
+}
+
+/*para dispositivos com resolução de no mínimo 992px*/
+@media(min-width: 992px) {
+  .principal-banner {
+    left: 0;
+    transform: translate(0, -80%);
+    width: 75%;
+    top: 70%;
+  }
+
+  .principal-bannerWrapper {
+    position: relative;
+    height: 100%;
+  }
+
+  .input-group span.input-group-addon{
+  padding: 1px 5px;
+}
+  
+}
+
+
+/*Legenda fieldset*/
+fieldset.scheduler-border {
+    border: 1px solid #ccc !important;
+    border-radius: 7px;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+    width: auto !important;
+    border: none;
+    font-size: 13px;
+}
+
+/*----------Back to Top Button -----------*/
+
+.btn-go-top {
+   display: none;
+   position: fixed;
+   bottom: .5em;
+   right: .5em;
+   padding: .5em;
+   background-color: rgb(125, 137, 202) !important;
+}
+
+
+.registros-tabela{
+  padding-top: 9px;
+  padding-right: 15px;
+}
+
+/*****Efeitos de transição de tela*******/
+.animate-if {
+  background:white;
+}
+
+.animate-if.ng-enter, .animate-if.ng-leave {
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+/*********Estilos de Fonts*********/
+.neoSansMedium{
+  font-family: 'NeoSansStd-Medium';
+}
+
+.neoSansUltra{
+  font-family: 'NeoSansStd-Ultra';
+}
+
+.neoSansRegular{
+  font-family: 'NeoSansStd-Regular';
+}
+
+.impact{
+  font-family: 'impact';
+}

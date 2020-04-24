@@ -1,0 +1,58 @@
+<div class="row row-center">
+	<div class="col-sm-12 col-center">
+		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
+			<div class="panel-heading">
+				<div class="panel-title"><strong>Formulário</strong></div>
+			</div>
+
+			<div class="panel-body fixed-panel">
+			<form name="form" class="form form-horizontal" role="form" autocomplete="off">
+					<div class="form-group form-compact inline-group">
+						<!-- Proprietário -->
+						<label for="txtProprietario" class="col-xs-1 control-label label-thin">Proprietário:</label>
+						<div class="col-xs-4">
+                            <input type="text" data-ng-tabindex='1'
+                                   class="form-control form-control-small" id="txtProprietario"
+                                   name="contaReceber.turno" data-ng-model="contaReceber.turno">
+						</div>
+						
+						<!-- Tipo Proprietário -->
+						<label for="txtTpProp" class="col-xs-2 control-label label-thin">Tipo Proprietário:</label>
+						<div class="col-xs-1">
+							<select name="modo" data-ng-model="contaReceber.modo"
+                                    class="form-control form-control-small" data-ng-tabindex='2'
+                                    id="txtTpProp">
+                               <option value="F">F</option>
+                               <option value="J">J</option>
+							</select>
+						</div>
+						
+						<!-- CPF/CNPJ -->
+						<label for="txtCpfCnpj" class="col-xs-1 control-label label-thin">CPF/CNPJ:</label>
+						<div class="col-xs-3">
+                            <input type="text" data-ng-tabindex='3'
+                                   class="form-control form-control-small" id="txtCpfCnpj"
+                                   name="contaReceber.turno" data-ng-model="contaReceber.turno">
+						</div>
+						
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<!-- Importe dos botoes do Form -->
+					<div class="form-group last">
+						<div class="col-md-12 text-center">
+							 <button class="btn btn-success" 
+						      	ng-click="fiancaCtrl.voltarParaListagem()">Salvar<span aria-hidden="true"></span>
+						      </button>
+						      
+						      <button class="btn btn-danger" 
+						      	ng-click="fiancaCtrl.voltarParaListagem()">Cancelar<span aria-hidden="true"></span>
+						      </button>
+						</div>
+				</div>
+
+	</div>
+	
+</div>

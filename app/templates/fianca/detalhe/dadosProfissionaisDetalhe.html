@@ -1,0 +1,62 @@
+<div class="container detalhamento" layout-padding>
+     	
+    <div class="form-group">
+		<label>Natureza da renda / Vínculo empregatício: </label> <span>{{fiancaCtrl.registro.natureza_renda_inquilino}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Profissão: </label> <span>{{fiancaCtrl.registro.profissao_inquilino}}</span>
+		<label>Data Admissão: </label> <span>{{fiancaCtrl.registro.data_admissao_inquilino}}</span>
+		<label>Salário Bruto: </label> <span>{{fiancaCtrl.registro.salario_inquilino}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Outros rendimentos se houver: </label> <span>{{fiancaCtrl.registro.outros_rendim_inquilino}}</span>
+
+	</div>
+
+	<div class="form-group">
+		<label>Total Mensal de Outros Rendimentos: </label> <span>{{fiancaCtrl.registro.total_rendim_inquilino}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Nome da Empresa/Instituição/Órgão em que trabalha: </label> <span>{{fiancaCtrl.registro.empresa_trab_inquilino}}</span>
+
+	</div>
+
+	<div class="form-group">
+		<label>Telefone: </label> <span>{{fiancaCtrl.registro.fone_com_2_inquilino}}</span>
+		<label>Ramal: </label> <span>{{fiancaCtrl.registro.ramal_com_inquilino}}</span>
+		
+	</div>
+
+	<div class="form-group">
+		<label>Empresa/Instituição Anterior (se atual menor que 1 ano): </label> <span>{{fiancaCtrl.registro.empresa_anterior_inquilino}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Pretendente possui referências Bancárias: </label> <span>{{fiancaCtrl.registro.ref_bancaria_inquilino}}</span>
+	</div>
+
+<div ng-if="fiancaCtrl.registro.ref_bancaria_inquilino == 'sim'">
+	<div class="form-group">
+		<label>Banco: </label> <span>{{fiancaCtrl.registro.banco_inquilino}}</span>
+	</div>
+	
+
+	<div class="form-group">
+		<label>Agência: </label> <span>{{fiancaCtrl.registro.agencia_inquilino}}</span>
+		<label>Conta Corrente: </label> <span>{{fiancaCtrl.registro.ccorrente_inquilino}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Gerente: </label> <span>{{fiancaCtrl.registro.gerente_inquilino}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Telefone: </label> <span>{{fiancaCtrl.registro.fone_gerente_inquilino}}</span>
+	</div>
+</div>
+
+</div>

@@ -1,0 +1,133 @@
+<div class="container detalhamento" layout-padding>
+    	
+    <div class="form-group">
+		<label>Possui renda para arcar com a locação: </label> <span>{{fiancaCtrl.registro.tem_renda_arcar_loc_inquilino}}</span>
+	</div>
+
+	<div class="form-group">
+	<label>Nº Pessoas compondo renda (Locatários Solidários): </label> <span>{{fiancaCtrl.registro.num_solidarios}}</span>
+	</div>
+
+<div ng-if="fiancaCtrl.registro.num_solidarios >=1">
+  <label><u>LOCATÁRIO SOLIDÁRIO 1</u></label>
+	<div class="form-group">
+		<label>Nome: </label> <span>{{fiancaCtrl.registro.solidario1}}</span>
+		<label>Data Nascimento: </label> <span>{{fiancaCtrl.registro.solidario1_data_nascimento }}</span>
+		<label>CPF: </label> <span>{{fiancaCtrl.registro.solidario1_cpf}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{fiancaCtrl.registro.solidario1_rg}}</span>
+		<label>Orgão Expedidor: </label> <span>{{fiancaCtrl.registro.solidario1_orgao_rg }}</span>
+		<label>Emissão: </label> <span>{{fiancaCtrl.registro.solidario1_data_emissao_rg }}</span>
+		<label>Validade: </label> <span>{{fiancaCtrl.registro.solidario1_data_valid_doc }}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Renda mensal bruta: </label> <span>{{fiancaCtrl.registro.solidario1_renda}}</span>
+		<label>Telefone: </label> <span>{{fiancaCtrl.registro.solidario1_fone}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Sexo: </label> <span>{{fiancaCtrl.registro.solidario1_sexo}}</span>
+		<label>Estado Civíl: </label> <span>{{fiancaCtrl.registro.solidario1_estado_civil }}</span>
+		<label>CPF Cônjuge: </label> <span>{{fiancaCtrl.registro.solidario1_conjuge_cpf }}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Cep: </label> <span>{{fiancaCtrl.registro.solidario1_cep}}</span>
+		<label>Irá Residir: </label> <span>{{fiancaCtrl.registro.solidario1_ira_residir}}</span>
+		<label>Grau Parentesco: </label> <span>{{fiancaCtrl.registro.solidario1_grau_parentesco}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Natureza Renda: </label> <span>{{fiancaCtrl.registro.solidario1_natureza_renda }}</span>
+		<label>Local Trabalho/Telefone: </label> <span>{{fiancaCtrl.registro.solidario1_empresa_trabalho }}</span>
+		<label>Data Admissão: </label> <span>{{fiancaCtrl.registro.solidario1_data_admissao }}</span>
+	</div>
+	
+</div>
+
+<div ng-if="fiancaCtrl.registro.num_solidarios >=2">
+  <label><u>LOCATÁRIO SOLIDÁRIO 2</u></label>
+	<div class="form-group">
+		<label>Nome: </label> <span>{{fiancaCtrl.registro.solidario2}}</span>
+		<label>Data Nascimento: </label> <span>{{fiancaCtrl.registro.solidario2_data_nascimento }}</span>
+		<label>CPF: </label> <span>{{fiancaCtrl.registro.solidario2_cpf}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{fiancaCtrl.registro.solidario2_rg}}</span>
+		<label>Orgão Expedidor: </label> <span>{{fiancaCtrl.registro.solidario2_orgao_rg }}</span>
+		<label>Emissão: </label> <span>{{fiancaCtrl.registro.solidario2_data_emissao_rg }}</span>
+		<label>Validade: </label> <span>{{fiancaCtrl.registro.solidario2_data_valid_doc }}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Renda mensal bruta: </label> <span>{{fiancaCtrl.registro.solidario2_renda}}</span>
+		<label>Telefone: </label> <span>{{fiancaCtrl.registro.solidario2_fone}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Sexo: </label> <span>{{fiancaCtrl.registro.solidario2_sexo}}</span>
+		<label>Estado Civíl: </label> <span>{{fiancaCtrl.registro.solidario2_estado_civil }}</span>
+		<label>CPF Cônjuge: </label> <span>{{fiancaCtrl.registro.solidario2_conjuge_cpf }}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Cep: </label> <span>{{fiancaCtrl.registro.solidario2_cep}}</span>
+		<label>Irá Residir: </label> <span>{{fiancaCtrl.registro.solidario2_ira_residir}}</span>
+		<label>Grau Parentesco: </label> <span>{{fiancaCtrl.registro.solidario2_grau_parentesco}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Natureza Renda: </label> <span>{{fiancaCtrl.registro.solidario2_natureza_renda }}</span>
+		<label>Local Trabalho/Telefone: </label> <span>{{fiancaCtrl.registro.solidario2_empresa_trabalho }}</span>
+		<label>Data Admissão: </label> <span>{{fiancaCtrl.registro.solidario2_data_admissao }}</span>
+	</div>
+</div>
+
+
+  <div ng-if="fiancaCtrl.registro.num_solidarios == 3">
+  	<label><u>LOCATÁRIO SOLIDÁRIO 3</u></label>
+	<div class="form-group">
+		<label>Nome: </label> <span>{{fiancaCtrl.registro.solidario3}}</span>
+		<label>Data Nascimento: </label> <span>{{fiancaCtrl.registro.solidario3_data_nascimento }}</span>
+		<label>CPF: </label> <span>{{fiancaCtrl.registro.solidario3_cpf}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{fiancaCtrl.registro.solidario3_rg}}</span>
+		<label>Orgão Expedidor: </label> <span>{{fiancaCtrl.registro.solidario3_orgao_rg }}</span>
+		<label>Emissão: </label> <span>{{fiancaCtrl.registro.solidario3_data_emissao_rg }}</span>
+		<label>Validade: </label> <span>{{fiancaCtrl.registro.solidario3_data_valid_doc }}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Renda mensal bruta: </label> <span>{{fiancaCtrl.registro.solidario3_renda}}</span>
+		<label>Telefone: </label> <span>{{fiancaCtrl.registro.solidario3_fone}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Sexo: </label> <span>{{fiancaCtrl.registro.solidario3_sexo}}</span>
+		<label>Estado Civíl: </label> <span>{{fiancaCtrl.registro.solidario3_estado_civil }}</span>
+		<label>CPF Cônjuge: </label> <span>{{fiancaCtrl.registro.solidario3_conjuge_cpf }}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Cep: </label> <span>{{fiancaCtrl.registro.solidario3_cep}}</span>
+		<label>Irá Residir: </label> <span>{{fiancaCtrl.registro.solidario3_ira_residir}}</span>
+		<label>Grau Parentesco: </label> <span>{{fiancaCtrl.registro.solidario3_grau_parentesco}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Natureza Renda: </label> <span>{{fiancaCtrl.registro.solidario3_natureza_renda }}</span>
+		<label>Local Trabalho/Telefone: </label> <span>{{fiancaCtrl.registro.solidario3_empresa_trabalho }}</span>
+		<label>Data Admissão: </label> <span>{{fiancaCtrl.registro.solidario3_data_admissao }}</span>
+	</div>
+</div>
+
+</div>

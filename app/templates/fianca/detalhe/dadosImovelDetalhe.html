@@ -1,0 +1,76 @@
+<div class="container detalhamento" layout-padding>
+      	
+    <div class="form-group">
+		<label>Finalidade Imóvel: </label> <span>{{fiancaCtrl.registro.ocupacao == 'R' ? 'RESIDENCIAL' : 'NÃO RESIDENCIAL'}}</span>
+	</div>
+
+	<div class="form-group">
+	<label>Tipo de Imóvel: </label> <span>{{fiancaCtrl.registro.imovel_tipo}} {{fiancaCtrl.registro.imovel_tipo_descricao}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Motivo da Locação: </label> <span>{{fiancaCtrl.registro.motivo_locacao}}</span>
+	</div>
+	
+	<!-- Trecho executado se finalidade imovel for não residencial -->
+		<div class="form-group" ng-if="fiancaCtrl.registro.ocupacao != 'R'">
+			<label>A locação pretendida é para empresa já constituída: </label> <span>{{fiancaCtrl.registro.empresa_constituida}}</span>
+			<label ng-if="fiancaCtrl.registro.empresa_constituida == 'S' ">CNPJ empresa: </label> <span ng-if="fiancaCtrl.registro.empresa_constituida == 'S' ">{{fiancaCtrl.registro.cnpj_empresa_constituida}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="fiancaCtrl.registro.ocupacao != 'R'">
+			<label>Ramo de atividade da empresa: </label> <span>{{fiancaCtrl.registro.ramo_atividade_empresa}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="fiancaCtrl.registro.ocupacao != 'R'">
+			<label>Trata-se de Franquia: </label> <span>{{fiancaCtrl.registro.franquia_empresa}}</span>
+			<label ng-if="fiancaCtrl.registro.franquia_empresa == 'S' ">Nome da Franqueadora: </label> <span ng-if="fiancaCtrl.registro.franquia_empresa == 'S' ">{{fiancaCtrl.registro.franqueadora_empresa}}</span>	
+		</div>
+		
+		<div class="form-group" ng-if="fiancaCtrl.registro.ocupacao != 'R'">
+			<label>Produtos/serviços fabricados, revendidos ou prestados: </label> <span>{{fiancaCtrl.registro.produtos_servicos_empresa}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="fiancaCtrl.registro.ocupacao != 'R'">
+			<label>Experiência no ramo pretendido: </label> <span>{{fiancaCtrl.registro.experiencia_ramo_empresa}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="fiancaCtrl.registro.ocupacao != 'R'">
+			<label>Faturamento mensal estimado: </label> <span>{{fiancaCtrl.registro.faturam_estim_empresa}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="fiancaCtrl.registro.ocupacao != 'R'">
+			<label>Prazo estimado para o retorno do capital investido: </label> <span>{{fiancaCtrl.registro.ret_cap_invest_empresa}}</span>
+		</div>
+		
+	<div class="form-group">
+		<label>CEP: </label> <span>{{fiancaCtrl.registro.cep}}</span>
+		<label>Estado: </label> <span>{{fiancaCtrl.registro.uf}}</span>
+		<label>Cidade: </label> <span>{{fiancaCtrl.registro.cidade}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Endereço: </label> <span>{{fiancaCtrl.registro.endereco}}</span>
+		<label>Bairro: </label> <span>{{fiancaCtrl.registro.bairro}}</span>
+		<label>Número: </label> <span>{{fiancaCtrl.registro.numero}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Complemento: </label> <span>{{fiancaCtrl.registro.complemento}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Aluguel: </label> <span>{{fiancaCtrl.registro.aluguel}}</span>
+		<label>Iptu Mensal: </label> <span>{{fiancaCtrl.registro.iptu}}</span>
+	</div>
+
+
+	<div class="form-group">
+		<label>Condomínio: </label> <span>{{fiancaCtrl.registro.condominio}}</span>
+		<label>Água: </label> <span>{{fiancaCtrl.registro.agua}}</span>
+		<label>Luz: </label> <span>{{fiancaCtrl.registro.energia}}</span>
+		<label>Gás Canalizado: </label> <span>{{fiancaCtrl.registro.gas}}</span>
+	</div>
+
+</div>

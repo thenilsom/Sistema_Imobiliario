@@ -1,0 +1,156 @@
+<style>
+.circulo{
+  border-radius: 100%;
+  border: 1px solid black;
+  width: 23px;
+  height: 23px;
+  background-color: rgb(255, 241, 74);
+}
+.circulo-vermelho{
+  background-color: rgb(221,44,0) !important;
+}
+
+.circulo-verde{
+  background-color: rgb(29, 171, 27) !important;
+}
+
+.circulo-cinza{
+  background-color: rgba(179, 179, 179, 0.87) !important;
+}
+
+.cor-titulo{
+	color: #005E9E
+}
+
+div {
+  text-align: left;
+}
+
+</style>
+
+  <div class="card mb-3">
+   <div class="card-header">
+          <i><img src = "img/fianca_icone.png"></i> <label class="cor-titulo"><strong>SEGURO FIANÇA</strong></label>
+   </div>
+
+<div class="card-body">
+          <div class="table-responsive">
+
+
+    <div class="form-inline text-right" inquilino="form">  
+      <div class="col-md-10">
+        <div class="form-group">
+            <div class="btn-group">
+                <input id="searchinput" type="search" ng-model="fiancaCtrl.searchText" class="form-control" placeholder="Pesquisar ...">
+                <span id="searchclear" class="" ng-click="fiancaCtrl.clearSearch()"></span>
+            </div>
+        </div>
+      </div>
+
+       <div class="col-md-2">
+        <button type="button" class="btn btn-primary" ng-click="fiancaCtrl.enviarAnalise()">Enviar Cadastro para Análise</button>
+      </div>
+    </div>
+    <hr>  
+          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="cursor:pointer;" class='th-sort-link cor-titulo' ng-click="sortBy = 'codigo'; sortOrder = !sortOrder">CÓDIGO
+          <span ng-show="sortBy == 'codigo' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          <span ng-show="sortBy == 'codigo' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th style="cursor:pointer;" class='th-sort-link cor-titulo' ng-click="sortBy = 'inquilino'; sortOrder = !sortOrder">CLIENTE
+          <span ng-show="sortBy == 'inquilino' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          <span ng-show="sortBy == 'inquilino' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th style="cursor:pointer;" class='th-sort-link cor-titulo' ng-click="sortBy = 'CPF_inquilino'; sortOrder = !sortOrder">CPF/CNPJ
+          <span ng-show="sortBy == 'CPF_inquilino' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          <span ng-show="sortBy == 'CPF_inquilino' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th style="cursor:pointer;" class='th-sort-link cor-titulo' ng-click="sortBy = 'solicitante'; sortOrder = !sortOrder">USUÁRIO
+          <span ng-show="sortBy == 'solicitante' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          <span ng-show="sortBy == 'solicitante' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th style="cursor:pointer;" class='th-sort-link cor-titulo' ng-click="sortBy = 'usuario_atendente'; sortOrder = !sortOrder">ATENDENTE
+          <span ng-show="sortBy == 'usuario_atendente' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          <span ng-show="sortBy == 'usuario_atendente' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th style="cursor:pointer;" class='th-sort-link cor-titulo' ng-click="sortBy = 'data_transm'; sortOrder = !sortOrder">DATA
+          <span ng-show="sortBy == 'data_transm' && !sortOrder" class="fa fa-sort-numeric-asc"></span>
+          <span ng-show="sortBy == 'data_transm' && sortOrder" class="fa fa-sort-numeric-desc"></span>
+        </th>
+        <th style="cursor:pointer;" class='th-sort-link cor-titulo' ng-click="sortBy = 'hora_transm'; sortOrder = !sortOrder">HORA
+          <span ng-show="sortBy == 'hora_transm' && !sortOrder" class="fa fa-sort-numeric-asc"></span>
+          <span ng-show="sortBy == 'hora_transm' && sortOrder" class="fa fa-sort-numeric-desc"></span>
+        </th>
+
+        <th ><img src="./templates/fianca/img/liberty_icone.png" class="icon-seguradora" style="height: 47px"></div></th>
+        <th ><img src="./templates/fianca/img/porto_icone.png" class="icon-seguradora" style="height: 47px"></div></th>
+        <th ><img src="./templates/fianca/img/too_icone.png" class="icon-seguradora"></div></th>
+
+        <th ></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr dir-paginate="reg in fiancaCtrl.fiancas | filter:fiancaCtrl.searchText | orderBy: sortBy:sortOrder | itemsPerPage: 20">
+        <td >{{reg.codigo}}</td>
+        <td >{{reg.inquilino}}</td>
+        <td >{{reg.CPF_inquilino}}</td>
+        <td >{{reg.solicitante ? reg.solicitante : '--'}}</td> 
+         <td >{{reg.usuario_atendente}}</td> 
+        <td >{{reg.data_transm ? (reg.data_transm | date: "dd/MM/yyyy" : "UTC") : '--'}}</td>
+        <td >{{reg.hora_transm}}</td>
+
+        <td >
+          <div ng-class="{'circulo-verde' : reg.situacao_analise_liberty.toLowerCase().includes('aprovad'), 
+          'circulo-vermelho' : reg.situacao_analise_liberty.toLowerCase().includes('recusad') || reg.situacao_analise_liberty.toLowerCase().includes('reprovad'), 
+          'circulo-cinza' : reg.situacao_analise_liberty == ''}" 
+          class="circulo" 
+          data-tooltip = "{{reg.processo_liberty || reg.situacao_analise_liberty ? ('<div>Análise: ' + reg.processo_liberty + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_liberty + '</div>') : ''}}"></div></td>
+
+          <td >
+          <div ng-class="{'circulo-verde' : reg.situacao_analise_porto.toLowerCase().includes('aprovad'), 
+          'circulo-vermelho' : reg.situacao_analise_porto.toLowerCase().includes('recusad') || reg.situacao_analise_porto.toLowerCase().includes('reprovad'), 
+          'circulo-cinza' : reg.situacao_analise_porto == ''}" 
+          class="circulo" 
+          data-tooltip = "{{reg.processo_porto || reg.situacao_analise_porto ? ('<div>Análise: ' + reg.processo_porto + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_porto + '</div>') : ''}}"></div></td>
+
+          <td >
+          <div ng-class="{'circulo-verde' : reg.situacao_analise_too.toLowerCase().includes('aprovad'), 
+          'circulo-vermelho' : reg.situacao_analise_too.toLowerCase().includes('recusad') || reg.situacao_analise_too.toLowerCase().includes('reprovad'), 
+          'circulo-cinza' : reg.situacao_analise_too == ''}" 
+          class="circulo" 
+          data-tooltip = "{{reg.processo_too || reg.situacao_analise_too ? ('<div>Análise: ' + reg.processo_too + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_too + '</div>') : ''}}"></div></td> 
+
+        <td >
+        	<button type="button" class="btn btn-info" ng-click="fiancaCtrl.detalhar(reg)">Detalhar</button>
+        	
+          <!--  
+        	<button type="button" class="btn btn-warning" ng-click="registrarAtendimento(reg)" 
+          		ng-if="!reg.usuario_analise || reg.usuario_analise == '0' ">Registrar</button>
+          		<span	class="glyphicon glyphicon-alert" style="font-size: 11pt; padding-left: 7px"
+          		ng-if="reg.data_aceite_analise == '0000-00-00 00:00:00' && isRegPendenteMais30Minutos(reg)"></span>
+           -->	
+        </td>       
+      </tr>
+        
+    </tbody>
+    <tfoot>
+            <tr style = "color:#005E9E;border-bottom:2px solid #ddd;">
+                <th>CÓDIGO</th>
+                <th>CLIENTE</th>
+                <th>CPF/CNPJ</th>
+                <th>USUÁRIO</th>
+                <th>ATENDENTE</th>
+                <th>DATA</th>
+                <th>HORA</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+  </table>
+
+    <dir-pagination-controls max-size="20"></dir-pagination-controls>
+    <!--Link da documentação da paginação = https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination -->
+
