@@ -32,4 +32,24 @@ class Fianca {
         $result = array('CGC_imob' => $CGC_imob, 'codigo_user' => $codigo_user, 'nivel_acesso' => $nivelAcesso); 
         return $result;
     }
+
+    public function incluirDadosContrato($formulario){
+        $sql = "UPDATE fianca set 
+        'proprietario'='".$formulario['proprietario']."',
+        'tipo_proprietario'='".$formulario['tipo_proprietario']."'
+        'CPF_proprietario'= '".$formulario['CPF_proprietario']."'
+        'data_proprietario'='".$formulario['data_proprietario']."'
+        'est_civil_proprietario'='".$formulario['est_civil_proprietario']."'
+        'rg_proprietario'='".$formulario['rg_proprietario']."'
+        'orgao_exp_proprietario'='".$formulario['orgao_exp_proprietario']."'
+        'data_exp_proprietario'='".$formulario['data_exp_proprietario']."'
+        'resp_proprietario'='".$formulario['resp_proprietario']."'
+        'CPF_resp_proprietario'='".$formulario['CPF_resp_proprietario']."'
+        'profissao_resp_proprietario'='".$formulario['profissao_resp_proprietario']."'
+         WHERE 'codigo'='".$formulario['codigo']"' ";
+
+         $stmt = $this->pdo->prepare($sql);
+         $stmt->execute();
+         return $stmt->rowCount();
+    }
 }

@@ -24,7 +24,7 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_liberty}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_liberty}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.voltarParaListagem()" ng-if="fiancaCtrl.registro.situacao_analise_liberty.toLowerCase().includes('aprovad')">Contratar
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato()" ng-if="fiancaCtrl.registro.situacao_analise_liberty.toLowerCase().includes('aprovad')">Contratar
 		  <span aria-hidden="true"></span> </button>
 		</div>
 		
@@ -36,7 +36,7 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_porto}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_porto}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.voltarParaListagem()" ng-if="fiancaCtrl.registro.situacao_analise_porto.toLowerCase().includes('aprovad')">Contratar
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato()" ng-if="fiancaCtrl.registro.situacao_analise_porto.toLowerCase().includes('aprovad')">Contratar
 		  <span aria-hidden="true"></span> </button>
 		</div>
 		
@@ -48,15 +48,15 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_too}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_too}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.voltarParaListagem()" ng-if="fiancaCtrl.registro.situacao_analise_too.toLowerCase().includes('aprovad')">Contratar
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato()" ng-if="fiancaCtrl.registro.situacao_analise_too.toLowerCase().includes('aprovad')">Contratar
 		  <span aria-hidden="true"></span> </button>
 		</div>
 		
 		<!-- Card Apólice -->
 		<div class="card col-sm-3">
-		  <div class="row card-body">
-			<label class="col-xs-11 control-label label-thin">Apólice: {{fiancaCtrl.registro.apolice.includes('ALL') ? '' : fiancaCtrl.registro.apolice}}</label>
-			<label class="col-xs-11 control-label label-thin">Seguradora: {{fiancaCtrl.registro.apolice.includes('ALL') ? '' : fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}</label>
+		  <div class="card-body">
+		  <p class="card-text"><strong>Apólice :</strong> {{fiancaCtrl.registro.seguradora.includes('ALL') ? '' : fiancaCtrl.registro.apolice}} <br/> 
+		  								  <strong>Seguradora :</strong> {{fiancaCtrl.registro.seguradora.includes('ALL') ? '' : fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}</p>
 		  </div>
 		</div>
 	</div>

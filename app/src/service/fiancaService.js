@@ -17,6 +17,15 @@
                             url: baseUrl + 'getVariaveisSessao.php'
                         }).then(successFn, errorFn);
             };
+            
+            var postFormulario = function(obj) {
+                return $http({
+                            method: 'POST',
+                            url: baseUrl + 'postFormularioContrato.php',
+                            data: obj
+                        }).then(successFn, errorFn);
+            };
+
 
             var successFn = function(response) {
                 return response.data;
@@ -25,6 +34,18 @@
                 console.warn("Error in GET or POST",error);
                 return error.data;
             }
+            
+            var validarCamposObrigatorios = function(formName, errors){
+    			$("form[name = '"+formName+"'] [requerido]").each(function(){
+    				if($(this).val() == undefined || $(this).val().trim().length == 0 || $(this).val().startsWith('?')){
+    					var label = $("label[for='"+$(this).attr('id')+"']").text().replace('*', '');
+    					var descErro = label + " obrigatório.";
+    					
+    					if(!errors.includes(descErro))
+    						errors.push(descErro);
+    				}
+    			});
+    		}
 
             var criptografar = function(val){
                 if(val){
@@ -50,8 +71,10 @@
             return {
                 getFianca: getFianca,
                 getVariaveisSessao : getVariaveisSessao,
+                postFormulario : postFormulario,
                 criptografar : criptografar,
-                apenasNumeros : apenasNumeros
+                apenasNumeros : apenasNumeros,
+                validarCamposObrigatorios : validarCamposObrigatorios
             };
         });
 }());

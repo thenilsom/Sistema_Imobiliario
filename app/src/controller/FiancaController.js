@@ -34,6 +34,10 @@
         vm.voltarParaListagem = function(){
             vm.acao = 'listar';
         }
+        
+        vm.voltarParaDetalhamento = function(){
+        	vm.acao = 'detalhar';
+        }
 
         vm.enviarAnalise = function(){
            fiancaService.getVariaveisSessao().then(function(response) {
@@ -45,6 +49,61 @@
             window.open(url, '_blank');
           });
         }
+        
+        
+        vm.iniciarFormularioContrato = function(){
+        	vm.errors = [];
+        	vm.regContrato =  angular.copy(vm.registro);
+        	vm.acao = 'incluir';
+        }
+        
+        vm.enviarFormularioContrato = function(){
+        	fiancaService.validarCamposObrigatorios('formContrato', vm.errors);
+        	if(vm.erros.length == 0){
+        		fiancaService.postFormulario(vm.regContrato).then(function(response) {
+        			alert('Dados salvos com sucesso.');
+        			vm.voltarParaDetalhamento();
+        		});
+        	}
+        }
+        
+       vm.select2Load = function(){
+
+			$('#profissao').change(function(){
+				codigo = $(this).val();
+				vm.regContrato.profissao_resp_proprietario = codigo;
+				descricao = $("#profissao option:selected").text();
+				vm.regContrato.profissao_descricao = descricao;
+			}); 
+  			
+		    $("#profissao").select2({
+				ajax: {
+					url: "https://www.segurosja.com.br/gerenciador/fianca/app/php/cb_autocomplete_profissoes.php",
+					type: "post",
+					dataType: 'json',
+					data: function (params) {
+						return {
+							searchTerm: params.term
+						};
+					},
+					processResults: function (response) {
+						return {
+							results: response
+						};
+					},
+					cache: true
+				} 
+				
+			}); 
+		}
+       
+       vm.select2EditaCombo = function(){
+			if((vm.regContrato.profissao_descricao != undefined) || (vm.regContrato.profissao_descricao != '')){
+				$('#select2-profissao-container').html(vm.regContrato.profissao_descricao);
+			}else{
+				$('#select2-profissao-container').html('Digite uma profissao para a pesquisa');
+			}
+		}
 
         //retorna o nome da seguradora pelo código
        vm.getNomeSeguradora = function(registro){
