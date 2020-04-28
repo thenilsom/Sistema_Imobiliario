@@ -13,6 +13,7 @@
         
         var listarEDetalharRegistro = function(codigo){
         	fiancaService.getFianca().then(function(response) {
+        		vm.fiancas = response;
         		vm.detalhar(response.filter(res=> res.codigo === codigo)[0]);
             });
         }
@@ -75,7 +76,7 @@
         		}
         		
         		fiancaService.postFormulario(vm.regContrato).then(function(response) {
-        			alert(response);
+        			alert(response.success ? response.success : response.critical);
         			listarEDetalharRegistro(vm.regContrato.codigo);
         		});
         	}
