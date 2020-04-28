@@ -63,6 +63,16 @@
         
                 return val;
             }
+            
+            var formatCnpjCpf = function(value){
+              const cnpjCpf = value.replace(/\D/g, '');
+              
+              if (cnpjCpf.length === 11) {
+                return cnpjCpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "\$1.\$2.\$3-\$4");
+              } 
+              
+              return cnpjCpf.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "\$1.\$2.\$3/\$4-\$5");
+            }
 
              var apenasNumeros = function (string) {
                  return string.replace(/[^0-9]/g, '');
@@ -74,6 +84,7 @@
                 postFormulario : postFormulario,
                 criptografar : criptografar,
                 apenasNumeros : apenasNumeros,
+                formatCnpjCpf : formatCnpjCpf,
                 validarCamposObrigatorios : validarCamposObrigatorios
             };
         });

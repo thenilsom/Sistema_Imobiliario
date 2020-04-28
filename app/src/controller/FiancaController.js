@@ -11,6 +11,12 @@
             vm.fiancas = response;
         });
         
+        var listarEDetalharRegistro = function(codigo){
+        	fiancaService.getFianca().then(function(response) {
+        		vm.detalhar(response.filter(res=> res.codigo === codigo)[0]);
+            });
+        }
+        
         /* Helper function to clear search query input string */
         vm.clearSearch = function() {
             vm.searchText = "";
@@ -19,10 +25,10 @@
         vm.detalhar = function(reg){
              vm.registro = angular.copy(reg);
          
-            for (var key in vm.registro) {
-              if(!vm.registro[key])
-                vm.registro[key] = '--';
-            }
+//            for (var key in vm.registro) {
+//              if(!vm.registro[key])
+//                vm.registro[key] = '--';
+//            }
 
             setTimeout(function(){
                 $("#accordion a:first").trigger("click");
@@ -52,17 +58,25 @@
         
         
         vm.iniciarFormularioContrato = function(){
-        	vm.errors = [];
         	vm.regContrato =  angular.copy(vm.registro);
         	vm.acao = 'incluir';
         }
         
         vm.enviarFormularioContrato = function(){
+        	vm.errors = [];
         	fiancaService.validarCamposObrigatorios('formContrato', vm.errors);
-        	if(vm.erros.length == 0){
+        	if(vm.errors.length == 0){
+        		if(vm.regContrato.CPF_proprietario){
+        			vm.regContrato.CPF_proprietario = fiancaService.formatCnpjCpf(vm.regContrato.CPF_proprietario);
+        		}
+        		
+        		if(vm.regContrato.CPF_resp_proprietario){
+        			vm.regContrato.CPF_resp_proprietario = fiancaService.formatCnpjCpf(vm.regContrato.CPF_resp_proprietario);
+        		}
+        		
         		fiancaService.postFormulario(vm.regContrato).then(function(response) {
-        			alert('Dados salvos com sucesso.');
-        			vm.voltarParaDetalhamento();
+        			alert(response);
+        			listarEDetalharRegistro(vm.regContrato.codigo);
         		});
         	}
         }
