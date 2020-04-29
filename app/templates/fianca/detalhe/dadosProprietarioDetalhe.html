@@ -1,0 +1,40 @@
+<div class="container detalhamento" layout-padding>
+      	
+    <div class="form-group">
+		<label>Proprietário: </label> <span>{{fiancaCtrl.registro.proprietario }}</span>
+		<label>Tipo Proprietário: </label> <span>{{fiancaCtrl.registro.tipo_proprietario}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>CPF/CNPJ: </label> <span>{{fiancaCtrl.registro.CPF_proprietario}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Data Nascimento: </label> <span>{{fiancaCtrl.registro.data_proprietario}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Estado Civíl: </label> <span>{{fiancaCtrl.registro.est_civil_proprietario}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>RG: </label> <span>{{fiancaCtrl.registro.rg_proprietario}}</span>
+		<label>Orgão Exp: </label> <span>{{fiancaCtrl.registro.orgao_exp_proprietario}}</span>
+		<label>Data Exp: </label> <span>{{fiancaCtrl.registro.data_exp_proprietario}}</span>
+	</div>
+	
+	<div ng-if="fiancaCtrl.registro.tipo_proprietario == 'J'">
+	<div class="form-group">
+		<label>Responsável pela Empresa: </label> <span>{{fiancaCtrl.registro.resp_proprietario}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>CPF Responsável Empresa: </label> <span>{{fiancaCtrl.registro.CPF_resp_proprietario}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Profissão Responsável Empresa: </label> <span>{{fiancaCtrl.registro.profissao_resp_proprietario}}</span>
+	</div>
+</div>
+
+</div>
