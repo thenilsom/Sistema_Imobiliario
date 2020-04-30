@@ -58,14 +58,14 @@
         }
         
         
-        vm.iniciarFormularioContrato = function(){
+        vm.iniciarFormularioContrato = function(tipo){
         	vm.regContrato =  angular.copy(vm.registro);
+        	vm.regContrato.seguradora = tipo;
         	vm.acao = 'incluir';
         }
         
         vm.enviarFormularioContrato = function(){
-        	vm.errors = [];
-        	fiancaService.validarCamposObrigatorios('formContrato', vm.errors);
+        	validarFormularioContrato();
         	if(vm.errors.length == 0){
         		if(vm.regContrato.CPF_proprietario){
         			vm.regContrato.CPF_proprietario = fiancaService.formatCnpjCpf(vm.regContrato.CPF_proprietario);
@@ -79,6 +79,21 @@
         			alert(response.success ? response.success : response.critical);
         			listarEDetalharRegistro(vm.regContrato.codigo);
         		});
+        	}
+        }
+        
+        var validarFormularioContrato = function(){
+        	vm.errors = [];
+        	fiancaService.validarCamposObrigatorios('formContrato', vm.errors);
+        	if(vm.regContrato.tipo_proprietario == 'F' && !fiancaService.validarCpf(vm.regContrato.CPF_proprietario)){
+        		vm.errors.push('CPF inválido');
+        		
+        	}else if(vm.regContrato.tipo_proprietario == 'J' && !fiancaService.validarCNPJ(vm.regContrato.CPF_proprietario)){
+        		vm.errors.push('CNPJ inválido');
+        	}
+        	
+        	if(vm.regContrato.CPF_resp_proprietario && !fiancaService.validarCpf(vm.regContrato.CPF_resp_proprietario)){
+        		vm.errors.push('CPF Responsável Empresa inválido');
         	}
         }
         

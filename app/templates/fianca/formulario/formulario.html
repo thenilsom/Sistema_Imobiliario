@@ -13,7 +13,10 @@
 	<div class="col-sm-12 col-center">
 		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
 			<div class="panel-heading">
-				<div class="panel-title"><strong>Formulário</strong></div>
+				<div class="panel-title" style="margin-bottom: 15px;">
+					<strong>Código SJ: {{fiancaCtrl.registro.codigo}} - {{fiancaCtrl.registro.inquilino}}</strong><br/><br/>
+					<h4><strong>Insira os dados complementares para contratação do seguro</strong></h4>
+				</div>
 			</div>
 			
 <!-- Array erros de validação -->
@@ -46,11 +49,31 @@
 							</select>
 						</div>
 						<!-- CPF/CNPJ -->
-						<label class="col-sm-1 control-label label-thin" for="txtCpfCnpj">CPF/CNPJ:</label>
+						<label class="col-sm-1 control-label label-thin" for="txtCpfCnpj">{{fiancaCtrl.regContrato.tipo_proprietario == 'F' ? 'CPF:' : 'CNPJ:'}}</label>
 						<div class="col-sm-3">
-                            <input type="text" data-ng-tabindex='3' mascara-cpfcnpj requerido
+                            <input type="text" data-ng-tabindex='3' requerido data-mascara-fixa="999.999.999-99"
                                    class="form-control" id="txtCpfCnpj"
                                    name="fiancaCtrl.regContrato.CPF_proprietario" data-ng-model="fiancaCtrl.regContrato.CPF_proprietario">
+						</div>
+					</div>
+					
+					<div class="form-group " ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J' ">
+					<!-- Responsável pela Empresa -->
+						<label class="col-sm-3 control-label label-thin" for="txtRespEmpresa">Nome Responsável pela Empresa:</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control form-control-small"
+                                   id="txtRespEmpresa" data-ng-tabindex='9'  maxlength="50"
+                                   name="fiancaCtrl.regContrato.resp_proprietario"
+                                   data-ng-model="fiancaCtrl.regContrato.resp_proprietario">
+						</div>
+						
+						<!-- CPF Responsável Empresa -->
+						<label for="txtCpfResp" class="col-sm-3 control-label label-thin">CPF Responsável Empresa:</label>
+						<div class="col-sm-3">
+                            <input type="text" data-ng-tabindex='10' mascara-cpfcnpj
+                                   class="form-control form-control-small" id="txtCpfResp"
+                                   name="fiancaCtrl.regContrato.CPF_resp_proprietario" 
+                                   data-ng-model="fiancaCtrl.regContrato.CPF_resp_proprietario">
 						</div>
 					</div>
 					
@@ -67,7 +90,7 @@
 						</div>
 						
 						<!-- Estado Civíl -->
-						<label for="txtEstadoCivil" class="col-sm-2 control-label label-thin">Estado Civíl:</label>
+						<label for="txtEstadoCivil" class="col-sm-2 control-label label-thin">Estado Civil:</label>
 						<div class="col-sm-2">
 							<select name="fiancaCtrl.regContrato.est_civil_proprietario" requerido
 									data-ng-model="fiancaCtrl.regContrato.est_civil_proprietario"
@@ -113,30 +136,11 @@
 						</div>
 						
 					</div>
-					<div class="form-group " ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J' ">
-					<!-- Responsável pela Empresa -->
-						<label class="col-sm-3 control-label label-thin" for="txtRespEmpresa">Responsável pela Empresa:</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control form-control-small"
-                                   id="txtRespEmpresa" data-ng-tabindex='9'  maxlength="50"
-                                   name="fiancaCtrl.regContrato.resp_proprietario"
-                                   data-ng-model="fiancaCtrl.regContrato.resp_proprietario">
-						</div>
-						
-						<!-- CPF Responsável Empresa -->
-						<label for="txtCpfResp" class="col-sm-3 control-label label-thin">CPF Responsável Empresa:</label>
-						<div class="col-sm-3">
-                            <input type="text" data-ng-tabindex='10' mascara-cpfcnpj
-                                   class="form-control form-control-small" id="txtCpfResp"
-                                   name="fiancaCtrl.regContrato.CPF_resp_proprietario" 
-                                   data-ng-model="fiancaCtrl.regContrato.CPF_resp_proprietario">
-						</div>
-					</div>
 					
 					<div class="form-group " ng-init="fiancaCtrl.select2EditaCombo()">
-			        <label class="col-sm-3" for="profissao">Profissão Responsável Empresa</label>
+			        <label class="col-sm-3" for="profissao">{{fiancaCtrl.regContrato.tipo_proprietario == 'F' ? 'Profissão:' : 'Profissão Responsável Empresa:'}}</label>
 			        <div class="col-sm-5">
-					<select class="form-control" id="profissao" ng-model="fiancaCtrl.regContrato.profissao_resp_proprietario" ng-tabindex="1" style = "width:350px;">  
+					<select class="form-control" id="profissao" ng-model="fiancaCtrl.regContrato.profissao_resp_proprietario" ng-tabindex="11" style = "width:350px;">  
 						<option ng-if="fiancaCtrl.regContrato.profissao_resp_proprietario != '' || fiancaCtrl.regContrato.profissao_resp_proprietario != undefined">{{fiancaCtrl.select2EditaCombo()}}</option>
 					</select>	
 					</div>							        

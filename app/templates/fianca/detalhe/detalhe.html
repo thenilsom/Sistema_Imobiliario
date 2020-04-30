@@ -7,6 +7,13 @@
 	padding-right: 10px;
 }
 
+.nav-tabs .nav-link{
+	background-color: #c7c7c7;
+    border-color: gray;
+    color: white;
+    font-weight: bold;
+}
+
 </style>
 <div class="row row-center">
 	<div class="col-sm-10 col-center">
@@ -24,7 +31,7 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_liberty}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_liberty}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato()" ng-if="fiancaCtrl.registro.situacao_analise_liberty.toLowerCase().includes('aprovad')">Contratar
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato('LIB')" ng-if="fiancaCtrl.registro.situacao_analise_liberty.toLowerCase().includes('aprovad')">Contratar
 		  <span aria-hidden="true"></span> </button>
 		</div>
 		
@@ -36,24 +43,24 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_porto}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_porto}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato()" ng-if="fiancaCtrl.registro.situacao_analise_porto.toLowerCase().includes('aprovad')">Contratar
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato('POR')" ng-if="fiancaCtrl.registro.situacao_analise_porto.toLowerCase().includes('aprovad')">Contratar
 		  <span aria-hidden="true"></span> </button>
 		</div>
 		
 		<!-- Card Too -->
 		<div class="card col-sm-3">
 		<div style="text-align: center;">
-		  <img class="card-img-top" src="./templates/fianca/img/too_icone.png" alt="Card image cap" style="width: 20%;">
+		  <img class="card-img-top" src="./templates/fianca/img/too_icone.png" alt="Card image cap" style="width: 35%;">
 		</div>
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_too}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_too}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato()" ng-if="fiancaCtrl.registro.situacao_analise_too.toLowerCase().includes('aprovad')">Contratar
+		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato('TOO')" ng-if="fiancaCtrl.registro.situacao_analise_too.toLowerCase().includes('aprovad')">Contratar
 		  <span aria-hidden="true"></span> </button>
 		</div>
 		
 		<!-- Card Apólice -->
-		<div class="card col-sm-3">
+		<div class="card col-sm-3" style="border: none;">
 		  <div class="card-body">
 		  <p class="card-text"><strong>Apólice :</strong> {{fiancaCtrl.registro.seguradora.includes('ALL') ? '' : fiancaCtrl.registro.apolice}} <br/> 
 		  								  <strong>Seguradora :</strong> {{fiancaCtrl.registro.seguradora.includes('ALL') ? '' : fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}</p>
@@ -64,7 +71,7 @@
 	
 	
 	
-	<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-bottom: 15px;">
+	<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-bottom: 15px; margin-top: 25px;">
 				  <li class="nav-item">
 				    <a class="nav-link active" id="aba-1" data-toggle="tab" href=".aba1" role="tab" aria-controls="nav-aba1" aria-selected="true">DADOS DO INQUILINO</a>
 				  </li>

@@ -347,3 +347,166 @@ diretiva.directive('requerido', function($parse) {
 		link : link
 	};
 });
+
+/**
+ * Implementação de 'mascaras', para Criação de MAscaras Genericas
+ * 
+ * Adicione data-mascara-mascara="X" ao imput, onde X = a mascara Desejada 
+ * 
+ * Use "9" para mascaras de campos com Números. Ex: 99/99/9999
+ * Use "A" para mascaras de campos com Letras. Ex: AA-AA
+ * USe "*" para mascaras de campos com Letras e Numeros. EX: (**) 
+ */
+diretiva.directive('mascaraFixa', function($filter) {
+
+	function link(scope, el, attrs, ngModelCtrl) {
+		var tokens = {
+				'9' : { mascara: /(\d)$/ , caracter: /[^\d]/g },
+				'A' : { mascara:/([a-zA-Z])/ , caracter: /[^a-zA-Z]/g },
+				'*' : { mascara: /([a-zA-Z])|(\d+)/ , caracter: /[^a-zA-Z\d]/g }
+		};
+
+		var mascara = attrs.mascara;
+		
+		function atualizaValor(valor){
+			
+			valor = aplicaMascara(valor , mascara);
+			valor = valor.toUpperCase();
+			ngModelCtrl.$viewValue = valor;
+			ngModelCtrl.$render();
+			
+			return valor;
+			
+		}
+
+		ngModelCtrl.$parsers.push(function(valor) {
+			if(valor){
+				valor = atualizaValor(valor);
+				return clear(valor,0);
+			}
+		});
+		
+		ngModelCtrl.$formatters.push(function(valor) {
+			if(valor){
+				return atualizaValor(String(valor));
+			}
+		});
+		
+		function isDataISO(date) {
+			return /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$/
+				.test(date.toString());
+		}
+		
+		function isData(date) {
+			return /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/.test(date.toString());
+		}
+
+		function clear(valor , ind){
+			var regex;
+			
+			if(isDataISO(valor)){
+				var data = Date.parse(valor);
+				valor = $filter('date')(data, 'dd/MM/yyyy','UTC');
+				return valor;
+			}
+			if(isData(valor)){
+				return valor;
+			}
+			
+			if(ind === 0){
+				var temp = '';
+				for (var i = 0; i < mascara.length ; i++ ) {
+					if(mascara[i] === 'A' || mascara[i] === '9'|| mascara[i] === '*'){
+						if(temp === ''){
+							temp = mascara[i];
+						}else if(temp ===  mascara[i]){
+							regex = tokens[mascara.charAt(ind)];
+						}else {
+							regex = { mascara: /([a-zA-Z])|(\d+)/ , caracter: /[^a-zA-Z\d]/g }
+						}          
+					}
+					
+				}
+			}
+			
+			if(regex){
+				return valor.replace(regex.caracter,'');
+			}else{
+				ind++;
+				return clear(valor, ind);
+			}
+			
+						
+		}
+		
+		function aplicaMascara(valor, mascara) {
+
+			valor = clear(valor, 0);
+			
+			if(isData(valor)){
+				return valor;
+			}
+			var formatted = '';
+			var valuePos = 0;
+			var tamanho = mascara.length < valor.length ? mascara.length : valor.length;
+			
+			
+			function temTokens(pattern, pos, inc) {
+				var pc = pattern.charAt(pos);
+				var token = tokens[pc];
+				if (pc === '') return false;
+				return token ? true : temTokens(pattern, pos + inc, inc);
+			}
+			
+			function continua() {
+				if (temTokens(mascara, i, 1)) {
+					return true;
+				}
+				return i < mascara.length && i >= 0;
+			}
+
+			
+	
+			for (var i = 0; continua() ; i++ ) {
+				var pc = mascara.charAt(i);
+				var vc = String(valor).charAt(valuePos);
+				var token = tokens[pc];
+				
+				if(token){
+					if (token.mascara.test(vc)) {
+						formatted += vc;
+						valuePos++;
+					}
+					if(vc === '') break;
+				}else{
+					formatted += pc;
+				}
+				
+			}
+	
+			return formatted;
+	
+		}
+		
+		// Auto-format on blur
+		el.bind('blur', function() {
+			var valor = ngModelCtrl.$viewValue;
+			if(valor){
+				if(valor.length < mascara.length){
+					valor = "";
+					ngModelCtrl.$modelValue = valor;
+				}
+				atualizaValor(valor);
+				ngModelCtrl.$commitViewValue();
+			}
+		});
+	
+	}
+
+	return {
+		restrict : 'A',
+		require : 'ngModel',
+		link : link
+	};
+	
+});
