@@ -145,7 +145,45 @@
 					</select>	
 					</div>							        
 			    </div>
+					
+					<!-- Inicio -->
+					<div class="form-group ">
+						<label class="col-sm-2 control-label label-thin"	for="txtInicio">Inicio:</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control form-control-small"
+                                   id="txtInicio" data-ng-tabindex='9'  requerido
+                                   name="fiancaCtrl.regContrato.inicio" data-datepicker
+                                   data-mascara="99/99/9999"
+                                   data-ng-model="fiancaCtrl.regContrato.inicio">
+						</div>
 						
+						<!-- Fim -->
+						<label class="col-sm-2 control-label label-thin"	for="txtFim">Fim:</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control form-control-small"
+                                   id="txtFim" data-ng-tabindex='10'  requerido
+                                   name="fiancaCtrl.regContrato.fim_contrato" data-datepicker
+                                   data-mascara="99/99/9999"
+                                   data-ng-model="fiancaCtrl.regContrato.fim_contrato">
+						</div>
+						
+						<!-- Indice Reajuste -->
+						<label class="col-sm-2 control-label label-thin" for="txtIndiceReajuste">Indice Reajuste:</label>
+						<div class="col-sm-2">
+                            <input type="text" data-ng-tabindex='11' requerido
+                                   class="form-control" id="txtIndiceReajuste"
+                                   name="fiancaCtrl.regContrato.indice_reajuste" data-ng-model="fiancaCtrl.regContrato.indice_reajuste">
+						</div>
+						
+						<!-- Período -->
+						<label class="col-sm-1 control-label label-thin" for="txtPeriodo">Período:</label>
+						<div class="col-sm-2">
+                            <input type="text" data-ng-tabindex='12' requerido
+                                   class="form-control" id="txtPeriodo"
+                                   name="fiancaCtrl.regContrato.periodo" data-ng-model="fiancaCtrl.regContrato.periodo">
+						</div>
+					</div>
+					
 				</form>
 			</div>
 		</div>
