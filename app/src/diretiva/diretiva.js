@@ -90,34 +90,6 @@ diretiva.directive('datepicker', function() {
 	}
 });
 
-/*Diretiva mascara
-Se o acesso for via mobile a diretiva não é ativada
-*/
-diretiva.directive('mascara', function(serviceUtil) {
-
-	function link(scope, el, attrs, ctrl) {
-		if(!serviceUtil.isMobile()){
-			$(el).mask(attrs.mascara, {placeholder: ""});
-			$(el).attr('type', 'text');
-      		el.on('keyup', function () {
-				scope.$apply(function(){
-				ctrl.$setViewValue(el.val());
-			});
-      	});
-
-	}else{
-		$(el).attr('type', attrs.mobile)
-	}
-			
-}
-	
-
-	return {
-		restrict : 'A',
-		require : 'ngModel',
-		link : link
-	};
-});
 
 /**
  * Implementação de 'mascaras', para formatar os Campos como Numerico
