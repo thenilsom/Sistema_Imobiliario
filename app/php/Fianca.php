@@ -46,10 +46,10 @@ class Fianca {
         `data_exp_proprietario`='".$formulario['data_exp_proprietario']."',
         `resp_proprietario`='".$formulario['resp_proprietario']."',
         `CPF_resp_proprietario`='".$formulario['CPF_resp_proprietario']."',
-        `profissao_resp_proprietario`='".$formulario['profissao_resp_proprietario']."'
-        `inicio`='".$formulario['inicio']."'
-        `fim_contrato`='".$formulario['fim_contrato']."'
-        `indice_reajuste`='".$formulario['indice_reajuste']."'
+        `profissao_resp_proprietario`='".$formulario['profissao_resp_proprietario']."',
+        `inicio`='".$formulario['inicio']."',
+        `fim_contrato`='".$formulario['fim_contrato']."',
+        `indice_reajuste`='".$formulario['indice_reajuste']."',
         `periodo`='".$formulario['periodo']."'
          WHERE `codigo`= $codigo";
 

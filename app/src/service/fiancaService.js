@@ -47,11 +47,19 @@
     			});
     		}
             
+            var isNull = function(obj){
+    			return obj === undefined || obj === null;
+    		}
+            
+            var isNullOrEmpty = function(obj){
+    			return isNull(obj) || obj.trim().length === 0;
+    		}
+            
             var validarCpf = function(cpf){
        		 // Remove caracteres inválidos do valor
-       	    cpf = !util.isNull(cpf) ? cpf.replace(/[^0-9]/g, '') : '';
+       	    cpf = !isNull(cpf) ? cpf.replace(/[^0-9]/g, '') : '';
        	    
-       		if(util.isNullOrEmpty(cpf)) return true;
+       		if(isNullOrEmpty(cpf)) return true;
        		// Garante que o valor é uma string
        	    cpf = cpf.toString();
        	    
