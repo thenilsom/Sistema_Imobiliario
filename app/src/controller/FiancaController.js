@@ -103,7 +103,7 @@
 				codigo = $(this).val();
 				vm.regContrato.profissao_resp_proprietario = codigo;
 				descricao = $("#profissao option:selected").text();
-				vm.regContrato.profissao_descricao = descricao;
+				vm.regContrato.profissao_resp_descricao = descricao;
 			}); 
   			
 		    $("#profissao").select2({
@@ -128,8 +128,8 @@
 		}
        
        vm.select2EditaCombo = function(){
-			if((vm.regContrato.profissao_descricao != undefined) || (vm.regContrato.profissao_descricao != '')){
-				$('#select2-profissao-container').html(vm.regContrato.profissao_descricao);
+			if((vm.regContrato.profissao_resp_descricao != undefined) || (vm.regContrato.profissao_resp_descricao != '')){
+				$('#select2-profissao-container').html(vm.regContrato.profissao_resp_descricao);
 			}else{
 				$('#select2-profissao-container').html('Digite uma profissao para a pesquisa');
 			}
