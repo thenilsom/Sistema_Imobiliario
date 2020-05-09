@@ -16,7 +16,7 @@ class Fianca {
             (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
             (SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
             (SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
-            (SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_inquilino) as profissao_resp_descricao,
+            (SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_resp_proprietario) as profissao_resp_descricao,
             (SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
             from fianca where CGC_imob='$session->cnpj_imob' order by data_transm desc, hora_transm desc";
         $stmt = $this->pdo->prepare($sql);
@@ -37,6 +37,7 @@ class Fianca {
     public function incluirDadosContrato($formulario){
         $codigo = $formulario['codigo'];
         $sql = "UPDATE `fianca` SET 
+        `seguradora`='".$formulario['seguradora']."',
         `proprietario`='".$formulario['proprietario']."',
         `tipo_proprietario`='".$formulario['tipo_proprietario']."',
         `CPF_proprietario`= '".$formulario['CPF_proprietario']."',

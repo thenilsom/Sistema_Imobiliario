@@ -180,6 +180,20 @@
              var apenasNumeros = function (string) {
                  return string.replace(/[^0-9]/g, '');
             }
+             
+             /**
+         	 * Retorna a diferença entre datas em dias
+         	 */
+         	var difEntreDatasEmDias = function(dataInicio, dataFim){
+         		var arrayDI = dataInicio.split('/');
+         		var arrayDF = dataFim.split('/');
+        		dataInicio =  Date(arrayDI[2], parseInt(arrayDI[1]) - 1, arrayDI[0]);
+        		dataFim =  Date(arrayDF[2], parseInt(arrayDF[1]) - 1, arrayDF[0]);
+        		
+         		var diff = Math.abs(dataInicio.getTime() - dataFim.getTime());
+         		var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+         		return days;
+             };
 
             return {
                 getFianca: getFianca,
@@ -190,7 +204,8 @@
                 formatCnpjCpf : formatCnpjCpf,
                 validarCamposObrigatorios : validarCamposObrigatorios,
                 validarCpf : validarCpf,
-                validarCNPJ : validarCNPJ
+                validarCNPJ : validarCNPJ,
+                difEntreDatasEmDias : difEntreDatasEmDias
             };
         });
 }());

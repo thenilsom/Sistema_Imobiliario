@@ -11,7 +11,7 @@
             vm.fiancas = response;
         });
         
-        var listarEDetalharRegistro = function(codigo){
+        vm.listarEDetalharRegistro = function(codigo){
         	fiancaService.getFianca().then(function(response) {
         		vm.fiancas = response;
         		vm.detalhar(response.filter(res=> res.codigo === codigo)[0]);
@@ -76,12 +76,10 @@
         		}
         		
         		fiancaService.postFormulario(vm.regContrato).then(function(response) {
-        			alert(response.success ? response.success : response.critical);
-        			listarEDetalharRegistro(vm.regContrato.codigo);
+        			vm.response = response.success ? response.success : response.critical;
+        			$('#modalConfirmacao').modal();
         		});
         		
-        	}else{
-        		$('#ancoraError').click();
         	}
         }
         
@@ -167,6 +165,11 @@
 		case '9': return 'Maior Índice';
 		default: return '';
 		}
+       }
+       
+       vm.calcularPeriodo = function(){
+    	   var dias = fiancaService.difEntreDatasEmDias(vm.registro.inicio, vm.registro.fim_contrato);
+    	   return Math.round(dias/30) + ' Mêses';
        }
 
         /* Check for authenticity of user - logged not logged in */

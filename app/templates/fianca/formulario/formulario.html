@@ -208,6 +208,14 @@
 			</div>
 		</div>
 		
+		<!-- Array erros de validação -->
+  <span id="listErrors">
+    <div class="alert alert-warning" role="alert" ng-if="fiancaCtrl.errors.length > 0">
+      <div ng-repeat="erro in fiancaCtrl.errors">
+        <span class="glyphicon glyphicon-exclamation-sign"> </span> {{erro}}
+      </div>
+  </div>
+		
 		<!-- Importe dos botoes do Form -->
 					<div class="form-group last">
 						<div class="col-sm-12 text-center">
@@ -221,9 +229,27 @@
 						</div>
 				</div>
 				
-				<!-- Link ancora fantasma -->
-				<a href="#listErrors" class="hidden" id="ancoraError"></a>
 
 	</div>
+	
+	<!-- Modal -->
+  <div class="modal fade" id="modalConfirmacao" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="alert alert-info">
+  			<span class="glyphicon glyphicon-warning-sign"></span>
+		</div>
+        </div>
+        <div class="modal-body">
+          <p>{{fiancaCtrl.response}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="fiancaCtrl.listarEDetalharRegistro(fiancaCtrl.regContrato.codigo)">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 	
 </div>
