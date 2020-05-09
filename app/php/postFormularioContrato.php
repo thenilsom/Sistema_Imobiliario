@@ -19,6 +19,6 @@
     $result = $fianca->incluirDadosContrato($request);
 
     if($result)
-        echo json_encode(array("success"=> "Dados salvos com sucesso!"));
+        echo json_encode(array("success"=> "Dados salvos com sucesso! O seguro iniciou o processo de emissão. Para conclusão é necessário o envio da cópia do contrato de locação assinado pelas partes em até 5 dias."));
     else
         echo json_encode(array("critical"=> "Dados não puderam ser gravados."));

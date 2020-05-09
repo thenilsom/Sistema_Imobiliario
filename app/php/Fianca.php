@@ -50,8 +50,7 @@ class Fianca {
         `profissao_resp_proprietario`='".$formulario['profissao_resp_proprietario']."',
         `inicio`='".$formulario['inicio']."',
         `fim_contrato`='".$formulario['fim_contrato']."',
-        `indice_reajuste`='".$formulario['indice_reajuste']."',
-        `periodo`='".$formulario['periodo']."'
+        `indice_reajuste`='".$formulario['indice_reajuste']."'
          WHERE `codigo`= $codigo";
 
          $stmt = $this->pdo->prepare($sql);

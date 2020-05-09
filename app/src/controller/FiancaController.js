@@ -79,6 +79,9 @@
         			alert(response.success ? response.success : response.critical);
         			listarEDetalharRegistro(vm.regContrato.codigo);
         		});
+        		
+        	}else{
+        		$('#ancoraError').click();
         	}
         }
         
@@ -149,6 +152,21 @@
           case 'TOO': return 'Too';
           default: return registro.seguradora;
         }
+       }
+       
+       vm.obterIndeceReajustePorCodigo = function(codigo){
+    	   switch (codigo) {
+		case '1': return 'IGP - M (FGV)';
+		case '2': return ' IGP - DI (FGV)';
+		case '3': return 'IPC - (FIPE)';
+		case '4': return 'IPCA - (IBGE)';
+		case '5': return ' INPC - (IBGE)';
+		case '6': return 'ICV - (DIEESE)';
+		case '7': return 'INCC';
+		case '8': return 'IPC - FGV';
+		case '9': return 'Maior Índice';
+		default: return '';
+		}
        }
 
         /* Check for authenticity of user - logged not logged in */
