@@ -187,8 +187,8 @@
          	var difEntreDatasEmDias = function(dataInicio, dataFim){
          		var arrayDI = dataInicio.split('/');
          		var arrayDF = dataFim.split('/');
-        		dataInicio =  Date(arrayDI[2], parseInt(arrayDI[1]) - 1, arrayDI[0]);
-        		dataFim =  Date(arrayDF[2], parseInt(arrayDF[1]) - 1, arrayDF[0]);
+        		dataInicio =  new Date(arrayDI[2], parseInt(arrayDI[1]) - 1, arrayDI[0]);
+        		dataFim =  new Date(arrayDF[2], parseInt(arrayDF[1]) - 1, arrayDF[0]);
         		
          		var diff = Math.abs(dataInicio.getTime() - dataFim.getTime());
          		var days = Math.ceil(diff / (1000 * 60 * 60 * 24));

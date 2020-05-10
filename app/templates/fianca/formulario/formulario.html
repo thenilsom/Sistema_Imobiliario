@@ -233,13 +233,11 @@
 	</div>
 	
 	<!-- Modal -->
-  <div class="modal fade" id="modalConfirmacao" role="dialog">
+  <div class="modal fade" id="modalConfirmacao" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
-        <div class="modal-header">
-          <div class="alert alert-info">
-  			<span class="glyphicon glyphicon-warning-sign"></span>
-		</div>
+        <div class="modal-header alert alert-warning">
+          <h4 class="modal-title">Alerta</h4>
         </div>
         <div class="modal-body">
           <p>{{fiancaCtrl.response}}</p>
