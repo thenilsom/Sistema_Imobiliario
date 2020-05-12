@@ -140,7 +140,7 @@
        vm.getNomeSeguradora = function(registro){
         switch(registro.seguradora){
           case 'BKY': return 'Berkley';
-          case 'BRA': return 'Bradesco';
+          case 'BRD': return 'Bradesco';
           case 'CDF': return 'Cardif';
           case 'FFX': return 'Fairfax';
           case 'LIB': return 'Liberty';
@@ -169,7 +169,8 @@
        
        vm.calcularPeriodo = function(){
     	   var dias = fiancaService.difEntreDatasEmDias(vm.registro.inicio, vm.registro.fim_contrato);
-    	   return Math.round(dias/30) + ' Mêses';
+    	   var periodo = Math.round(dias/30);
+    	   return periodo > 1 ?  (periodo + ' Mês') : (periodo + ' Mêses');
        }
 
         /* Check for authenticity of user - logged not logged in */

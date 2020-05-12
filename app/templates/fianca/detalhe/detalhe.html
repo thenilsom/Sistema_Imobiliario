@@ -43,7 +43,8 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_liberty}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_liberty}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato('LIB')" 
+		  <button class="btn" ng-click="fiancaCtrl.iniciarFormularioContrato('LIB')" 
+		  			   ng-class="{'btn-primary': fiancaCtrl.registro.seguradora.includes('ALL')}"
 		  			   ng-if="fiancaCtrl.registro.situacao_analise_liberty.toLowerCase().includes('aprovad')"
 		  			   ng-disabled="!fiancaCtrl.registro.seguradora.includes('ALL')">Contratar
 		  <span aria-hidden="true"></span> </button>
@@ -57,8 +58,9 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_porto}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_porto}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato('POR')" 
+		  <button class="btn" ng-click="fiancaCtrl.iniciarFormularioContrato('POR')" 
 		  			  ng-if="fiancaCtrl.registro.situacao_analise_porto.toLowerCase().includes('aprovad')"
+		  			  ng-class="{'btn-primary': fiancaCtrl.registro.seguradora.includes('ALL')}"
 		  			  ng-disabled="!fiancaCtrl.registro.seguradora.includes('ALL')">Contratar
 		  <span aria-hidden="true"></span> </button>
 		</div>
@@ -71,8 +73,9 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_too}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_too}}</p>
 		  </div>
-		  <button class="btn btn-primary" ng-click="fiancaCtrl.iniciarFormularioContrato('TOO')" 
+		  <button class="btn" ng-click="fiancaCtrl.iniciarFormularioContrato('TOO')" 
 		  			  ng-if="fiancaCtrl.registro.situacao_analise_too.toLowerCase().includes('aprovad')"
+		  			  ng-class="{'btn-primary': fiancaCtrl.registro.seguradora.includes('ALL')}"
 		  			  ng-disabled="!fiancaCtrl.registro.seguradora.includes('ALL')">Contratar
 		  <span aria-hidden="true"></span> </button>
 		</div>
