@@ -18,6 +18,12 @@
             });
         }
         
+        var listarSeguradoras = function(){
+        	 fiancaService.getSeguradoras().then(function(response) {
+                 vm.seguradoras = response;
+             });
+        }
+        
         /* Helper function to clear search query input string */
         vm.clearSearch = function() {
             vm.searchText = "";
@@ -25,7 +31,8 @@
 
         vm.detalhar = function(reg){
              vm.registro = angular.copy(reg);
-         
+             listarSeguradoras();
+             
 //            for (var key in vm.registro) {
 //              if(!vm.registro[key])
 //                vm.registro[key] = '--';
@@ -138,18 +145,11 @@
 
         //retorna o nome da seguradora pelo código
        vm.getNomeSeguradora = function(registro){
-        switch(registro.seguradora){
-          case 'BKY': return 'Berkley';
-          case 'BRD': return 'Bradesco';
-          case 'CDF': return 'Cardif';
-          case 'FFX': return 'Fairfax';
-          case 'LIB': return 'Liberty';
-          case 'POR': return 'Porto Seguro';
-          case 'PTC': return 'Pottencial';
-          case 'TOK': return 'Tokio Marine';
-          case 'TOO': return 'Too';
-          default: return registro.seguradora;
-        }
+    	   var seguradora = vm.seguradoras.filter(i=> i.sigla == registro.seguradora)[0];
+       		if(seguradora){
+       			return seguradora.nome_abrev;
+       		}
+       		return registro.seguradora;;
        }
        
        vm.obterIndeceReajustePorCodigo = function(codigo){
@@ -170,7 +170,7 @@
        vm.calcularPeriodo = function(){
     	   var dias = fiancaService.difEntreDatasEmDias(vm.registro.inicio, vm.registro.fim_contrato);
     	   var periodo = Math.round(dias/30);
-    	   return periodo > 1 ?  (periodo + ' Mês') : (periodo + ' Mêses');
+    	   return periodo > 1 ?  (periodo + ' Mêses') : (periodo + ' Mês');
        }
 
         /* Check for authenticity of user - logged not logged in */

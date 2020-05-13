@@ -157,7 +157,7 @@
 					<div class="form-group " ng-init="fiancaCtrl.select2EditaCombo()">
 			        <label class="col-sm-3" for="profissao">{{fiancaCtrl.regContrato.tipo_proprietario == 'F' ? 'Profissão:' : 'Profissão Responsável Empresa:'}}</label>
 			        <div class="col-sm-5">
-					<select class="form-control" id="profissao" ng-model="fiancaCtrl.regContrato.profissao_resp_proprietario" data-ng-tabindex='11' style = "width:350px;">  
+					<select class="form-control" id="profissao" ng-model="fiancaCtrl.regContrato.profissao_resp_proprietario" style = "width:350px;">  
 						<option ng-if="fiancaCtrl.regContrato.profissao_resp_proprietario != '' || fiancaCtrl.regContrato.profissao_resp_proprietario != undefined">{{fiancaCtrl.select2EditaCombo()}}</option>
 					</select>	
 					</div>							        
@@ -168,7 +168,7 @@
 						<label class="col-sm-3 control-label label-thin"	for="txtInicio">Início do Contrato de Locação:</label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control form-control-small"
-                                   id="txtInicio" data-ng-tabindex='12'  requerido
+                                   id="txtInicio" data-ng-tabindex='11'  requerido
                                    name="fiancaCtrl.regContrato.inicio" data-datepicker
                                    data-mascara="99/99/9999"
                                    data-ng-model="fiancaCtrl.regContrato.inicio">
@@ -178,7 +178,7 @@
 						<label class="col-sm-3 control-label label-thin"	for="txtFim">Fim do Contrato de Locação:</label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control form-control-small"
-                                   id="txtFim" data-ng-tabindex='13'  requerido
+                                   id="txtFim" data-ng-tabindex='12'  requerido
                                    name="fiancaCtrl.regContrato.fim_contrato" data-datepicker
                                    data-mascara="99/99/9999"
                                    data-ng-model="fiancaCtrl.regContrato.fim_contrato">
@@ -188,7 +188,7 @@
 						<label class="col-sm-2 control-label label-thin" for="txtIndiceReajuste">Indice Reajuste:</label>
 						<div class="col-sm-2">
 						<select name="fiancaCtrl.regContrato.indice_reajuste" data-ng-model="fiancaCtrl.regContrato.indice_reajuste"
-                                    class="form-control" data-ng-tabindex='14' requerido
+                                    class="form-control" data-ng-tabindex='13' requerido
                                     id="txtIndiceReajuste">
                                <option value="1">IGP-M (FGV)</option>
                                <option value="2">IGP-DI (FGV)</option>
@@ -219,7 +219,7 @@
 		<!-- Importe dos botoes do Form -->
 					<div class="form-group last">
 						<div class="col-sm-12 text-center">
-							 <a class="btn btn-success" tabindex="15"
+							 <a class="btn btn-success" tabindex="14"
 						      	ng-click="fiancaCtrl.enviarFormularioContrato()">Contratar<span aria-hidden="true"></span>
 						      </a>
 						      

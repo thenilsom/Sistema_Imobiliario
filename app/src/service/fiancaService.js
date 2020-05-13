@@ -10,6 +10,13 @@
                             url: baseUrl + 'getFianca.php'
                         }).then(successFn, errorFn);
             };
+            
+            var getSeguradoras = function() {
+                return $http({
+                            method: 'GET',
+                            url: baseUrl + 'getSeguradoras.php'
+                        }).then(successFn, errorFn);
+            };
 
             var getVariaveisSessao = function() {
                 return $http({
@@ -197,6 +204,7 @@
 
             return {
                 getFianca: getFianca,
+                getSeguradoras : getSeguradoras,
                 getVariaveisSessao : getVariaveisSessao,
                 postFormulario : postFormulario,
                 criptografar : criptografar,

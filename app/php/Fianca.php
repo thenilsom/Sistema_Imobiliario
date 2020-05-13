@@ -1,6 +1,7 @@
 <?php
 require_once 'Database.php';
 const USERS_TABLE = "fianca";
+const USERS_TABLE = "seguradoras";
 class Fianca {
     private $pdo;
 
@@ -31,6 +32,15 @@ class Fianca {
         $codigo_user = $session->codigo;
         $nivelAcesso = $session->acesso->nivel_acesso;
         $result = array('CGC_imob' => $CGC_imob, 'codigo_user' => $codigo_user, 'nivel_acesso' => $nivelAcesso); 
+        return $result;
+    }
+
+    public function listarSeguradoras()
+    {   
+        $sql = "SELECT nome_abrev, sigla from seguradoras where fianca = '1' order by nome_abrev";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
         return $result;
     }
 

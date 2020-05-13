@@ -9,6 +9,16 @@
 		<label>CPF/CNPJ: </label> <span>{{fiancaCtrl.registro.CPF_proprietario}}</span>
 	</div>
 	
+	<div ng-if="fiancaCtrl.registro.tipo_proprietario == 'J'">
+	<div class="form-group">
+		<label>Responsável pela Empresa: </label> <span>{{fiancaCtrl.registro.resp_proprietario}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>CPF Responsável Empresa: </label> <span>{{fiancaCtrl.registro.CPF_resp_proprietario}}</span>
+	</div>
+	</div>
+	
 	<div class="form-group">
 		<label>Data Nascimento: </label> <span>{{fiancaCtrl.registro.data_proprietario}}</span>
 	</div>
@@ -25,15 +35,7 @@
 	
 	<div ng-if="fiancaCtrl.registro.tipo_proprietario == 'J'">
 	<div class="form-group">
-		<label>Responsável pela Empresa: </label> <span>{{fiancaCtrl.registro.resp_proprietario}}</span>
-	</div>
-	
-	<div class="form-group">
-		<label>CPF Responsável Empresa: </label> <span>{{fiancaCtrl.registro.CPF_resp_proprietario}}</span>
-	</div>
-	
-	<div class="form-group">
-		<label>Profissão Responsável Empresa: </label> <span>{{fiancaCtrl.registro.profissao_resp_proprietario}}</span>
+		<label>Profissão Responsável Empresa: </label> <span>{{fiancaCtrl.registro.profissao_resp_descricao}}</span>
 	</div>
 </div>
 
