@@ -168,9 +168,11 @@
        }
        
        vm.calcularPeriodo = function(){
-    	   var dias = fiancaService.difEntreDatasEmDias(vm.registro.inicio, vm.registro.fim_contrato);
-    	   var periodo = Math.round(dias/30);
-    	   return periodo > 1 ?  (periodo + ' Mêses') : (periodo + ' Mês');
+    	   if(vm.registro.inicio && vm.registro.fim_contrato){
+    		   var dias = fiancaService.difEntreDatasEmDias(vm.registro.inicio, vm.registro.fim_contrato);
+    		   var periodo = Math.round(dias/30);
+    		   return periodo > 1 ?  (periodo + ' Mêses') : (periodo + ' Mês');
+    	   }
        }
 
         /* Check for authenticity of user - logged not logged in */
