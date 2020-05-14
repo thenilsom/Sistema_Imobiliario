@@ -33,10 +33,8 @@
 		<label>Data Exp: </label> <span>{{fiancaCtrl.registro.data_exp_proprietario}}</span>
 	</div>
 	
-	<div ng-if="fiancaCtrl.registro.tipo_proprietario == 'J'">
 	<div class="form-group">
-		<label>Profissão Responsável Empresa: </label> <span>{{fiancaCtrl.registro.profissao_resp_descricao}}</span>
+		<label>{{fiancaCtrl.registro.tipo_proprietario == 'F' ? 'Profissão:' : 'Profissão Responsável Empresa:'}}</label> <span>{{fiancaCtrl.registro.profissao_resp_descricao}}</span>
 	</div>
-</div>
 
 </div>

@@ -12,6 +12,7 @@
         });
         
         vm.listarEDetalharRegistro = function(codigo){
+        	$('#modalConfirmacao').modal('hide');
         	fiancaService.getFianca().then(function(response) {
         		vm.fiancas = response;
         		vm.detalhar(response.filter(res=> res.codigo === codigo)[0]);
@@ -72,6 +73,7 @@
         }
         
         vm.enviarFormularioContrato = function(){
+        	vm.errors = [];
         	validarFormularioContrato();
         	if(vm.errors.length == 0){
         		if(vm.regContrato.CPF_proprietario){
@@ -91,7 +93,6 @@
         }
         
         var validarFormularioContrato = function(){
-        	vm.errors = [];
         	fiancaService.validarCamposObrigatorios('formContrato', vm.errors);
         	if(vm.regContrato.tipo_proprietario == 'F' && !fiancaService.validarCpf(vm.regContrato.CPF_proprietario)){
         		vm.errors.push('CPF inválido');
@@ -170,8 +171,10 @@
        vm.calcularPeriodo = function(){
     	   if(vm.registro.inicio && vm.registro.fim_contrato){
     		   var dias = fiancaService.difEntreDatasEmDias(vm.registro.inicio, vm.registro.fim_contrato);
-    		   var periodo = Math.round(dias/30);
-    		   return periodo > 1 ?  (periodo + ' Mêses') : (periodo + ' Mês');
+    		   var periodoEmMeses = dias/30;
+    		   var regex = new RegExp('^-?\\d+(?:\.\\d{0,' + (0 || -1) + '})?');
+    		   var resultado = periodoEmMeses.toString().match(regex)[0];
+    		   return parseInt(resultado) > 1 ?  (resultado + ' Meses') : (resultado + ' Mes');
     	   }
        }
 

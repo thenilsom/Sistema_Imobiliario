@@ -8,110 +8,95 @@
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
+
+.form-group label, input, select{
+	margin-right: 15px;
+}
+
+
+
+.form-group{
+	margin-bottom: 20px !important;
+}
 </style>
-<div class="row row-center container">
-	<div class="col-sm-12 col-center">
-		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
-			<div class="panel-heading">
-				<div class="panel-title" style="margin-bottom: 15px;">
-					<strong>Código SJ: {{fiancaCtrl.registro.codigo}} - {{fiancaCtrl.registro.inquilino}}</strong><br/><br/>
-					<h4 style="color: #FF4500"><strong>Insira os dados complementares para contratação do seguro</strong></h4>
-				</div>
-			</div>
+	<div class="panel-title" style="margin-bottom: 15px;">
+		<strong>Código SJ: {{fiancaCtrl.registro.codigo}} - {{fiancaCtrl.registro.inquilino}}</strong><br/><br/>
+		<h4 style="color: #FF4500"><strong>Insira os dados complementares para contratação do seguro</strong></h4>
+	</div>
 			
 <!-- Array erros de validação -->
-  <span id="listErrors">
+  <div id="listErrors">
     <div class="alert alert-warning" role="alert" ng-if="fiancaCtrl.errors.length > 0">
       <div ng-repeat="erro in fiancaCtrl.errors">
         <span class="glyphicon glyphicon-exclamation-sign"> </span> {{erro}}
       </div>
   </div>
+  </div>
 
-			<div class="panel-body fixed-panel">
-			<form name="formContrato" class="form-horizontal" role="form" autocomplete="off" ng-init="fiancaCtrl.select2Load()">
+			<form name="formContrato" class="form-inline" role="form" autocomplete="off" ng-init="fiancaCtrl.select2Load()" style="margin-top: 4%;">
 					<div class="form-group ">
 						<!-- Proprietário -->
-						<label class="col-sm-1 control-label label-thin" for="txtProprietario">Proprietário:</label>
-						<div class="col-sm-5">
+						<label  for="txtProprietario">Proprietário:</label>
                             <input type="text" data-ng-tabindex='1' maxlength="50" requerido
                                    class="form-control" id="txtProprietario"
                                    name="fiancaCtrl.regContrato.proprietario" data-ng-model="fiancaCtrl.regContrato.proprietario">
-						</div>
 						
 						<!-- Tipo Proprietário -->
-						<label class="col-sm-2 control-label label-thin" for="txtTpProp">Tipo Proprietário:</label>
-						<div class="col-sm-2">
+						<label for="txtTpProp">Tipo Proprietário:</label>
 							<select name="fiancaCtrl.regContrato.tipo_proprietario" data-ng-model="fiancaCtrl.regContrato.tipo_proprietario"
                                     class="form-control" data-ng-tabindex='2' requerido
                                     id="txtTpProp">
                                <option value="F">P.Física</option>
                                <option value="J">P.Jurídica</option>
 							</select>
-						</div>
 						
 						<!-- CPF -->
-						<div ng-if="!fiancaCtrl.regContrato.tipo_proprietario || fiancaCtrl.regContrato.tipo_proprietario == 'F'">
-							<label class="col-sm-1 control-label label-thin" for="txtCpf">CPF</label>
-							<div class="col-sm-3">
-	                            <input type="text" data-ng-tabindex='3' requerido 
-	                            	   data-mascara-fixa="999.999.999-99"
+							<label  for="txtCpf" ng-if="!fiancaCtrl.regContrato.tipo_proprietario || fiancaCtrl.regContrato.tipo_proprietario == 'F'">CPF</label>
+	                            <input type="text" data-ng-tabindex='3'   ng-if="!fiancaCtrl.regContrato.tipo_proprietario || fiancaCtrl.regContrato.tipo_proprietario == 'F'"
+	                            	   data-mascara-fixa="999.999.999-99" requerido
 	                                   class="form-control" id="txtCpf"
 	                                   name="fiancaCtrl.regContrato.CPF_proprietario" data-ng-model="fiancaCtrl.regContrato.CPF_proprietario">
-							</div>
-						</div>
 						
 						<!-- CNPJ -->
-						<div ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J'">
-							<label class="col-sm-1 control-label label-thin" for="txtCnpj">CNPJ</label>
-							<div class="col-sm-3">
-	                            <input type="text" data-ng-tabindex='3' requerido 
-	                            	   data-mascara-fixa="99.999.999/9999-99"
+							<label for="txtCnpj" ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J'">CNPJ</label>
+	                            <input type="text" data-ng-tabindex='3' ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J'"
+	                            	   data-mascara-fixa="99.999.999/9999-99" requerido
 	                                   class="form-control" id="txtCnpj"
 	                                   name="fiancaCtrl.regContrato.CPF_proprietario" data-ng-model="fiancaCtrl.regContrato.CPF_proprietario">
-							</div>
-						</div>
 						
 					</div>
 					
-					<div class="form-group " ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J' ">
+					<div class="form-group ">
 					<!-- Responsável pela Empresa -->
-						<label class="col-sm-3 control-label label-thin" for="txtRespEmpresa">Nome Responsável pela Empresa:</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control form-control-small"
+						<label for="txtRespEmpresa" ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J' ">Nome Responsável pela Empresa:</label>
+							<input type="text" ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J' "
+								   class="form-control "
                                    id="txtRespEmpresa" data-ng-tabindex='4'  maxlength="50"
                                    name="fiancaCtrl.regContrato.resp_proprietario"
                                    data-ng-model="fiancaCtrl.regContrato.resp_proprietario">
-						</div>
 						
 						<!-- CPF Responsável Empresa -->
-						<label for="txtCpfResp" class="col-sm-3 control-label label-thin">CPF Responsável Empresa:</label>
-						<div class="col-sm-3">
-                            <input type="text" data-ng-tabindex='5' 
+						<label for="txtCpfResp" ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J' ">CPF Responsável Empresa:</label>
+                            <input type="text" ng-if="fiancaCtrl.regContrato.tipo_proprietario == 'J' " 
+                            		data-ng-tabindex='5' 
                             	   data-mascara-fixa="999.999.999-99"
-                                   class="form-control form-control-small" id="txtCpfResp"
+                                   class="form-control " id="txtCpfResp"
                                    name="fiancaCtrl.regContrato.CPF_resp_proprietario" 
                                    data-ng-model="fiancaCtrl.regContrato.CPF_resp_proprietario">
-						</div>
-					</div>
-					
-					<!-- Data Nascimento -->
-					<div class="form-group ">
-						<label class="col-sm-2 control-label label-thin"
-							for="txtDataNasc">Data Nascimento:</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control form-control-small"
+						
+						<!-- Data Nascimento -->
+						<label for="txtDataNasc">Data Nascimento:</label>
+							<input type="text" class="form-control"
                                    id="txtDataNasc" data-ng-tabindex='6'  requerido
                                    name="fiancaCtrl.regContrato.data_proprietario" data-datepicker
                                    data-mascara="99/99/9999"
                                    data-ng-model="fiancaCtrl.regContrato.data_proprietario">
-						</div>
 						
 						<!-- Estado Civíl -->
-						<label for="txtEstadoCivil" class="col-sm-2 control-label label-thin">Estado Civil:</label>
-						<div class="col-sm-2">
+						<label for="txtEstadoCivil">Estado Civil:</label>
 							<select name="fiancaCtrl.regContrato.est_civil_proprietario" requerido
 									data-ng-model="fiancaCtrl.regContrato.est_civil_proprietario"
-                                    class="form-control form-control-small" data-ng-tabindex='7'
+                                    class="form-control " data-ng-tabindex='7'
                                     id="txtEstadoCivil">
                                <option value="SOLTEIRO">Solteiro(a)</option>
                                <option value="CASADO">Casado(a)</option>
@@ -119,74 +104,60 @@
                                <option value="VIUVO">Viúvo(a)</option>
                                <option value="DIVORCIADO">Divorciado(a)</option>
 							</select>
-						</div>
-						
 					</div>
+					
 					
 					<div class="form-group ">
 					<!-- RG -->
-						<label for="txtRg" class="col-sm-1 control-label label-thin">RG:</label>
-						<div class="col-sm-2">
+						<label for="txtRg">RG:</label>
                             <input type="text" data-ng-tabindex='8' requerido
-                                   class="form-control form-control-small" id="txtRg" maxlength="15"
+                                   class="form-control " id="txtRg" maxlength="15"
                                    name="fiancaCtrl.regContrato.rg_proprietario" 
                                    data-ng-model="fiancaCtrl.regContrato.rg_proprietario">
-						</div>
 						
 						<!-- Orgão Exp -->
-						<label for="txtOrgaoExp" class="col-sm-2 control-label label-thin">Orgão Exp:</label>
-						<div class="col-sm-2">
+						<label for="txtOrgaoExp">Orgão Exp:</label>
                             <input type="text" data-ng-tabindex='9' requerido
-                                   class="form-control form-control-small" id="txtOrgaoExp"
+                                   class="form-control " id="txtOrgaoExp"
                                    name="fiancaCtrl.regContrato.orgao_exp_proprietario" 
                                    data-ng-model="fiancaCtrl.regContrato.orgao_exp_proprietario">
-						</div>
 						
 						<!-- Data Exp -->
-						<label class="col-sm-2 control-label label-thin" for="txtDataExp">Data Exp:</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control form-control-small"
+						<label for="txtDataExp">Data Exp:</label>
+							<input type="text" class="form-control "
                                    id="txtDataExp" data-ng-tabindex='10' requerido
                                    name="fiancaCtrl.regContrato.data_exp_proprietario" data-datepicker
                                    data-mascara="99/99/9999"
                                    data-ng-model="fiancaCtrl.regContrato.data_exp_proprietario">
-						</div>
 						
+						<!-- Profissão -->
+					<label for="profissao">{{fiancaCtrl.regContrato.tipo_proprietario == 'F' ? 'Profissão:' : 'Profissão Responsável Empresa:'}}</label>
+						<select class="form-control" id="profissao" ng-model="fiancaCtrl.regContrato.profissao_resp_proprietario" style = "width:350px;">  
+							<option ng-if="fiancaCtrl.regContrato.profissao_resp_proprietario != '' || fiancaCtrl.regContrato.profissao_resp_proprietario != undefined">{{fiancaCtrl.select2EditaCombo()}}</option>
+						</select>	
 					</div>
 					
-					<div class="form-group " ng-init="fiancaCtrl.select2EditaCombo()">
-			        <label class="col-sm-3" for="profissao">{{fiancaCtrl.regContrato.tipo_proprietario == 'F' ? 'Profissão:' : 'Profissão Responsável Empresa:'}}</label>
-			        <div class="col-sm-5">
-					<select class="form-control" id="profissao" ng-model="fiancaCtrl.regContrato.profissao_resp_proprietario" style = "width:350px;">  
-						<option ng-if="fiancaCtrl.regContrato.profissao_resp_proprietario != '' || fiancaCtrl.regContrato.profissao_resp_proprietario != undefined">{{fiancaCtrl.select2EditaCombo()}}</option>
-					</select>	
-					</div>							        
-			    </div>
+					
 					
 					<!-- Inicio -->
 					<div class="form-group ">
-						<label class="col-sm-3 control-label label-thin"	for="txtInicio">Início do Contrato de Locação:</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control form-control-small"
+						<label 	for="txtInicio">Início do Contrato de Locação:</label>
+							<input type="text" class="form-control "
                                    id="txtInicio" data-ng-tabindex='11'  requerido
                                    name="fiancaCtrl.regContrato.inicio" data-datepicker
                                    data-mascara="99/99/9999"
                                    data-ng-model="fiancaCtrl.regContrato.inicio">
-						</div>
 						
 						<!-- Fim -->
-						<label class="col-sm-3 control-label label-thin"	for="txtFim">Fim do Contrato de Locação:</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control form-control-small"
+						<label 	for="txtFim">Fim do Contrato de Locação:</label>
+							<input type="text" class="form-control "
                                    id="txtFim" data-ng-tabindex='12'  requerido
                                    name="fiancaCtrl.regContrato.fim_contrato" data-datepicker
                                    data-mascara="99/99/9999"
                                    data-ng-model="fiancaCtrl.regContrato.fim_contrato">
-						</div>
 						
 						<!-- Indice Reajuste -->
-						<label class="col-sm-2 control-label label-thin" for="txtIndiceReajuste">Indice Reajuste:</label>
-						<div class="col-sm-2">
+						<label for="txtIndiceReajuste">Indice Reajuste:</label>
 						<select name="fiancaCtrl.regContrato.indice_reajuste" data-ng-model="fiancaCtrl.regContrato.indice_reajuste"
                                     class="form-control" data-ng-tabindex='13' requerido
                                     id="txtIndiceReajuste">
@@ -200,20 +171,18 @@
                                <option value="8">IPC-FGV</option>
                                <option value="9">Maior Índice</option>
 							</select>
-						</div>
 						
 					</div>
 					
 				</form>
-			</div>
-		</div>
 		
 		<!-- Array erros de validação -->
-  <span id="listErrors">
+  <div id="listErrors">
     <div class="alert alert-warning" role="alert" ng-if="fiancaCtrl.errors.length > 0">
       <div ng-repeat="erro in fiancaCtrl.errors">
         <span class="glyphicon glyphicon-exclamation-sign"> </span> {{erro}}
       </div>
+  </div>
   </div>
 		
 		<!-- Importe dos botoes do Form -->
@@ -228,9 +197,6 @@
 						      </button>
 						</div>
 				</div>
-				
-
-	</div>
 	
 	<!-- Modal -->
   <div class="modal fade" id="modalConfirmacao" role="dialog" data-backdrop="static">
@@ -243,11 +209,10 @@
           <p>{{fiancaCtrl.response}}</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="fiancaCtrl.listarEDetalharRegistro(fiancaCtrl.regContrato.codigo)">OK</button>
+          <button type="button" class="btn btn-default" ng-click="fiancaCtrl.listarEDetalharRegistro(fiancaCtrl.regContrato.codigo)">OK</button>
         </div>
       </div>
     </div>
   </div>
-</div>
 	
 </div>
