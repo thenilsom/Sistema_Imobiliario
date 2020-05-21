@@ -174,7 +174,12 @@
     		   var periodoEmMeses = dias/30;
     		   var regex = new RegExp('^-?\\d+(?:\.\\d{0,' + (0 || -1) + '})?');
     		   var resultado = periodoEmMeses.toString().match(regex)[0];
-    		   return parseInt(resultado) > 1 ?  (resultado + ' Meses') : (resultado + ' Mes');
+    		   var diasRestantes = dias - (parseInt(resultado) * 30);
+    		   var retorno = parseInt(resultado) > 1 ?  (resultado + ' Meses ') : (resultado + ' Mes ');
+    		   if(diasRestantes > 0){
+    			   retorno += 'e ' + diasRestantes > 1 ? (diasRestantes + ' dias') : (diasRestantes + ' dia');
+    		   }
+    		   return retorno;
     	   }
        }
 

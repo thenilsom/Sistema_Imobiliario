@@ -81,10 +81,16 @@
 		</div>
 		
 		<!-- Card Apólice -->
-		<div class="card col-sm-3" style="border: none;">
+		<div class="card col-sm-3" style="border: none;" data-ng-if="!fiancaCtrl.registro.seguradora.includes('ALL')">
 		  <div class="card-body">
-		  <p class="card-text"><strong>Apólice :</strong> {{fiancaCtrl.registro.seguradora.includes('ALL') ? '' : fiancaCtrl.registro.apolice}} <br/> 
-		  								  <strong>Seguradora :</strong> {{fiancaCtrl.registro.seguradora.includes('ALL') ? '' : fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}</p>
+		  <p class="card-text">
+		  <strong>Seguro Contratado</strong><br/>
+		  <strong>Apólice :</strong> {{fiancaCtrl.registro.apolice}} <br/> 
+		  <strong>Seguradora :</strong> {{fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}<br/>
+		  <strong>Data Contratação :</strong> {{fiancaCtrl.registro.data_contratacao | date: "dd/MM/yyyy" : "UTC"}}<br/>
+		  <strong>Contratado por :</strong>
+		  
+		  </p>
 		  </div>
 		</div>
 	</div>

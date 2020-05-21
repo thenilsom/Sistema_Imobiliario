@@ -46,7 +46,9 @@ class Fianca {
 
     public function incluirDadosContrato($formulario){
         $codigo = $formulario['codigo'];
+        $dataServidor = date("Y-m-d H:i:s");
         $sql = "UPDATE `fianca` SET 
+        `data_contratacao`='$dataServidor',
         `seguradora`='".$formulario['seguradora']."',
         `proprietario`='".$formulario['proprietario']."',
         `tipo_proprietario`='".$formulario['tipo_proprietario']."',
