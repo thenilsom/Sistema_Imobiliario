@@ -2,6 +2,9 @@
 require_once 'Database.php';
 const USERS_TABLE = "fianca";
 const USERS_TABLE = "seguradoras";
+const USERS_TABLE = "usuarios";
+const USERS_TABLE = "imobs";
+const USERS_TABLE = "usuarios_imobs";
 class Fianca {
     private $pdo;
 
@@ -13,7 +16,9 @@ class Fianca {
 
     public function getFianca()
     {   $session = Session::getInstance();
-        $sql = "SELECT *, DATE_FORMAT(data_transm, '%d/%m/%Y') as data_transm_formatada,
+        $sql = "SELECT *, 
+            DATE_FORMAT(data_transm, '%d/%m/%Y') as data_transm_formatada,
+            DATE_FORMAT(data_contratacao, '%d/%m/%Y') as data_contratacao_formatada,
             (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
             (SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
             (SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
@@ -44,11 +49,31 @@ class Fianca {
         return $result;
     }
 
+    public function consultarUsuario($param){
+        $codigo = $param['codigo'];
+        $nivel = $param['nivel'];
+
+       
+        if($nivel == '1'){
+            $sql = "SELECT nome from usuarios where codigo='$codigo'";
+        }else if($nivel == '2'){
+            $sql = "SELECT usuario from imobs where codigo='$codigo'";
+        }else if($nivel == '3'){
+            $sql = "SELECT usuario from usuarios_imobs where codigo='$codigo'";
+        }
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }
+
     public function incluirDadosContrato($formulario){
         $codigo = $formulario['codigo'];
         $dataServidor = date("Y-m-d H:i:s");
         $sql = "UPDATE `fianca` SET 
         `data_contratacao`='$dataServidor',
+        `usuario_contratacao`='".$formulario['usuario_contratacao']."',
         `seguradora`='".$formulario['seguradora']."',
         `proprietario`='".$formulario['proprietario']."',
         `tipo_proprietario`='".$formulario['tipo_proprietario']."',

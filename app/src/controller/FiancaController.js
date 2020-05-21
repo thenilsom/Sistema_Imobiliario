@@ -42,6 +42,16 @@
             setTimeout(function(){
                 $("#accordion a:first").trigger("click");
             },500);
+            
+            //obtem o nome do usuario da contratação pelo codigo
+            if(vm.registro.usuario_contratacao){
+            	var arry = vm.registro.usuario_contratacao.split('_');
+            	if(arry.length == 2){
+            		fiancaService.getUsuario({'nivel' : arry[0], 'codigo' : arry[1]}).then(function(response) {
+            			console.log(response);
+            		});
+            	}
+            }
 
             vm.acao = 'detalhar';
         }
@@ -74,7 +84,7 @@
         
         vm.enviarFormularioContrato = function(){
         	vm.errors = [];
-        	validarFormularioContrato();
+        	//validarFormularioContrato();
         	if(vm.errors.length == 0){
         		if(vm.regContrato.CPF_proprietario){
         			vm.regContrato.CPF_proprietario = fiancaService.formatCnpjCpf(vm.regContrato.CPF_proprietario);
@@ -84,10 +94,14 @@
         			vm.regContrato.CPF_resp_proprietario = fiancaService.formatCnpjCpf(vm.regContrato.CPF_resp_proprietario);
         		}
         		
-        		fiancaService.postFormulario(vm.regContrato).then(function(response) {
-        			vm.response = response.success ? response.success : response.critical;
-        			$('#modalConfirmacao').modal();
-        		});
+        		 fiancaService.getVariaveisSessao().then(function(response) {
+        			 vm.regContrato.usuario_contratacao = response.nivel_acesso + '_' + response.codigo_user;
+        			 fiancaService.postFormulario(vm.regContrato).then(function(response) {
+        				 vm.response = response.success ? response.success : response.critical;
+        				 $('#modalConfirmacao').modal();
+        			 });
+                    
+                  });
         		
         	}
         }

@@ -32,6 +32,14 @@
                             data: obj
                         }).then(successFn, errorFn);
             };
+            
+            var getUsuario = function(obj) {
+                return $http({
+                            method: 'POST',
+                            url: baseUrl + 'getUsuario.php',
+                            data: obj
+                        }).then(successFn, errorFn);
+            };
 
 
             var successFn = function(response) {
@@ -213,6 +221,7 @@
                 validarCamposObrigatorios : validarCamposObrigatorios,
                 validarCpf : validarCpf,
                 validarCNPJ : validarCNPJ,
+                getUsuario : getUsuario,
                 difEntreDatasEmDias : difEntreDatasEmDias
             };
         });
