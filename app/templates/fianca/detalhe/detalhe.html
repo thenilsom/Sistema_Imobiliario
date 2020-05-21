@@ -84,11 +84,11 @@
 		<div class="card col-sm-3" style="border: none;" data-ng-if="!fiancaCtrl.registro.seguradora.includes('ALL')">
 		  <div class="card-body">
 		  <p class="card-text">
-		  <strong>Seguro Contratado</strong><br/>
-		  <strong>Apólice :</strong> {{fiancaCtrl.registro.apolice}} <br/> 
-		  <strong>Seguradora :</strong> {{fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}<br/>
-		  <strong>Data Contratação :</strong> {{fiancaCtrl.registro.data_contratacao_formatada}}<br/>
-		  <strong>Contratado por : {{fiancaCtrl.registro.usuarioContratacao}}</strong>
+		  <strong><label style="color: #007bff">Seguro Contratado</label></strong><br/>
+		  <strong>Data Contratação:</strong> {{fiancaCtrl.registro.data_contratacao_formatada}}<br/>
+		  <strong>Contratado por:</strong> {{fiancaCtrl.registro.usuarioContratacao}}<br/>
+		  <strong>Seguradora:</strong> {{fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}<br/>
+		  <strong>Apólice:</strong> {{fiancaCtrl.registro.apolice}}
 		  
 		  </p>
 		  </div>

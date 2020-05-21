@@ -191,7 +191,8 @@
     		   var diasRestantes = dias - (parseInt(resultado) * 30);
     		   var retorno = parseInt(resultado) > 1 ?  (resultado + ' Meses ') : (resultado + ' Mes ');
     		   if(diasRestantes > 0){
-    			   retorno += 'e ' + diasRestantes > 1 ? (diasRestantes + ' dias') : (diasRestantes + ' dia');
+    			   retorno += 'e ';
+    			   retorno += diasRestantes > 1 ? (diasRestantes + ' dias') : (diasRestantes + ' dia');
     		   }
     		   return retorno;
     	   }
