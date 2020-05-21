@@ -48,7 +48,7 @@
             	var arry = vm.registro.usuario_contratacao.split('_');
             	if(arry.length == 2){
             		fiancaService.getUsuario({'nivel' : arry[0], 'codigo' : arry[1]}).then(function(response) {
-            			console.log(response);
+            			vm.registro.usuarioContratacao = response.user;
             		});
             	}
             }
@@ -84,7 +84,7 @@
         
         vm.enviarFormularioContrato = function(){
         	vm.errors = [];
-        	//validarFormularioContrato();
+        	validarFormularioContrato();
         	if(vm.errors.length == 0){
         		if(vm.regContrato.CPF_proprietario){
         			vm.regContrato.CPF_proprietario = fiancaService.formatCnpjCpf(vm.regContrato.CPF_proprietario);

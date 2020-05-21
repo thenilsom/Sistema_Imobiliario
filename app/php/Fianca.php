@@ -49,17 +49,16 @@ class Fianca {
         return $result;
     }
 
-    public function consultarUsuario($param){
-        $codigo = $param['codigo'];
-        $nivel = $param['nivel'];
+    public function consultarUsuario($parametro){
+        $codigo = $parametro['codigo'];
+        $nivel = $parametro['nivel'];
 
-       
         if($nivel == '1'){
-            $sql = "SELECT nome from usuarios where codigo='$codigo'";
+            $sql = "SELECT nome as user from usuarios where codigo='$codigo'";
         }else if($nivel == '2'){
-            $sql = "SELECT usuario from imobs where codigo='$codigo'";
+            $sql = "SELECT usuario as user from imobs where codigo='$codigo'";
         }else if($nivel == '3'){
-            $sql = "SELECT usuario from usuarios_imobs where codigo='$codigo'";
+            $sql = "SELECT usuario as user from usuarios_imobs where codigo='$codigo'";
         }
     
         $stmt = $this->pdo->prepare($sql);
