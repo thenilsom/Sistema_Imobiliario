@@ -79,6 +79,21 @@
         vm.iniciarFormularioContrato = function(tipo){
         	vm.regContrato =  angular.copy(vm.registro);
         	vm.regContrato.seguradora = tipo;
+        	vm.tabelaParcelamento = [];
+        	
+        	if(angular.equals('LIB', tipo)){
+        		fiancaService.getTabelaPrecoLiberty({'codigo' : vm.regContrato.codigo}).then(function(response) {
+        			if(response)
+        				vm.tabelaParcelamento = response.p70retornoCalculoFianca.listaPlanosParcelamento;
+        		});
+        		
+        	}else if(angular.equals('POR', tipo)){
+        		fiancaService.getTabelaPrecoPorto({'codigo' : 2935}).then(function(response) {
+        			if(response)
+        				vm.tabelaParcelamento = response.p70retornoCalculoFianca.listaPlanosParcelamento;
+        		});
+        	}
+        	 
         	vm.acao = 'incluir';
         }
         

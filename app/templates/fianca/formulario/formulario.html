@@ -18,6 +18,27 @@
 .form-group{
 	margin-bottom: 20px !important;
 }
+
+/*Legenda fieldset*/
+fieldset.scheduler-border {
+    border: 1px solid #ccc !important;
+    border-radius: 7px;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+    width: auto !important;
+    border: none;
+    font-size: 17px;
+}
+
+legend{
+	margin-bottom: 10px !important;
+}
+
 </style>
 	<div class="panel-title" style="margin-bottom: 15px;">
 		<strong>Código SJ: {{fiancaCtrl.registro.codigo}} - {{fiancaCtrl.registro.inquilino}}</strong><br/><br/>
@@ -34,6 +55,34 @@
   </div>
 
 			<form name="formContrato" class="form-inline" role="form" autocomplete="off" ng-init="fiancaCtrl.select2Load()" style="margin-top: 4%;">
+			
+						<!-- Tabela parcelamento -->
+						<div class="container">
+						  <h3>Opções Parcelamento</h3>
+						  <table class="table table-striped">
+						    <thead>
+						      <tr>
+						        <th>Forma de Pagamento</th>
+						        <th>Qtd Parcelas</th>
+						        <th>Valor das Parcelas</th>
+						        <th>*</th>
+						      </tr>
+						    </thead>
+						    
+						    <tbody>
+						      <tr ng-repeat="parcela in fiancaCtrl.tabelaParcelamento.planosParcelamento">
+						        <td>{{parcela.formaPagamento}}</td>
+						        <td>{{parcela.quantidadeParcelas}}</td>
+						        <td>{{parcela.valorPrimeiraParcela | currency:"R$ ":2}}</td>
+						        <td><input type="radio" name="optradio" style="width: 20px; height: 20px"></td>
+						      </tr>
+						    </tbody>
+						  </table>
+					</div>
+
+	<fieldset class="scheduler-border">
+					<legend class="scheduler-border"><b>Formulário</b></legend>	
+				
 					<div class="form-group ">
 						<!-- Proprietário -->
 						<label  for="txtProprietario">Proprietário:</label>
@@ -174,6 +223,7 @@
 						
 					</div>
 					
+				</fieldset>		
 				</form>
 		
 		<!-- Array erros de validação -->

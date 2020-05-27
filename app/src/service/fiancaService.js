@@ -33,6 +33,22 @@
                         }).then(successFn, errorFn);
             };
             
+            var getTabelaPrecoLiberty = function(obj) {
+                return $http({
+                            method: 'POST',
+                            url: 'https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_calculocompac_post.php',
+                            data: obj
+                        }).then(successFn, errorFn);
+            };
+            
+            var getTabelaPrecoPorto = function(obj) {
+                return $http({
+                            method: 'POST',
+                            url: 'https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_calculocompac_post.php',
+                            data: obj
+                        }).then(successFn, errorFn);
+            };
+            
             var getUsuario = function(obj) {
                 return $http({
                             method: 'POST',
@@ -222,6 +238,8 @@
                 validarCpf : validarCpf,
                 validarCNPJ : validarCNPJ,
                 getUsuario : getUsuario,
+                getTabelaPrecoLiberty : getTabelaPrecoLiberty,
+                getTabelaPrecoPorto : getTabelaPrecoPorto,
                 difEntreDatasEmDias : difEntreDatasEmDias
             };
         });
