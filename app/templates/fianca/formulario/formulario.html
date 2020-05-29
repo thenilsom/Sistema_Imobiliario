@@ -39,6 +39,25 @@ legend{
 	margin-bottom: 10px !important;
 }
 
+.nav-tabs .nav-link{
+	background-color: #c7c7c7;
+    border-color: gray;
+    color: white;
+    font-weight: bold;
+}
+
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
 </style>
 	<div class="panel-title" style="margin-bottom: 15px;">
 		<strong>Código SJ: {{fiancaCtrl.registro.codigo}} - {{fiancaCtrl.registro.inquilino}}</strong><br/><br/>
@@ -54,11 +73,21 @@ legend{
   </div>
   </div>
 
-			<form name="formContrato" class="form-inline" role="form" autocomplete="off" ng-init="fiancaCtrl.select2Load()" style="margin-top: 4%;">
-			
-						<!-- Tabela parcelamento -->
-						<div class="container">
-						  <h3>Opções Parcelamento</h3>
+			<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-bottom: 15px; margin-top: 25px;">
+				  <li class="nav-item">
+				    <a class="nav-link active" id="aba-1" data-toggle="tab" href=".aba1" role="tab" aria-controls="nav-aba1" aria-selected="true">OPÇÕES DE PAGAMENTO</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="aba-2" data-toggle="tab" href=".aba2" role="tab" aria-controls="nav-aba2" aria-selected="false">OPÇÕES DE PAGAMENTO (Não recomendadas)</a>
+				  </li>
+				  
+			</ul>
+
+	<div class="tab-content" id="myTabContent">
+				<!-- ABA 1 -->
+			  <div class="aba1 tab-pane active" id="nav-aba1" role="tabpanel" aria-labelledby="aba-1">
+			  <div class="container">
+					<!-- Tabela parcelamento -->
 						  <table class="table table-striped">
 						    <thead>
 						      <tr>
@@ -70,16 +99,46 @@ legend{
 						    </thead>
 						    
 						    <tbody>
-						      <tr ng-repeat="parcela in fiancaCtrl.tabelaParcelamento.planosParcelamento">
+						      <tr ng-repeat="parcela in fiancaCtrl.listaRecomendada">
 						        <td>{{parcela.formaPagamento}}</td>
 						        <td>{{parcela.quantidadeParcelas}}</td>
 						        <td>{{parcela.valorPrimeiraParcela | currency:"R$ ":2}}</td>
-						        <td><input type="radio" name="optradio" style="width: 20px; height: 20px"></td>
+						        <td><input type="radio" name="optradio1" style="width: 20px; height: 20px"></td>
 						      </tr>
 						    </tbody>
 						  </table>
 					</div>
+				</div>
+	
+		 <!-- ABA 2 -->
+		  <div class="aba2 tab-pane" id="nav-aba2" role="tabpanel" aria-labelledby="aba-2">
+		  	<!-- Tabela parcelamento -->
+		  			<div class="container">
+						  <table class="table table-striped">
+						    <thead>
+						      <tr>
+						        <th>Forma de Pagamento</th>
+						        <th>Qtd Parcelas</th>
+						        <th>Valor das Parcelas</th>
+						        <th>*</th>
+						      </tr>
+						    </thead>
+						    
+						    <tbody>
+						      <tr ng-repeat="parcela in fiancaCtrl.listaNaoRecomendada">
+						        <td>{{parcela.formaPagamento}}</td>
+						        <td>{{parcela.quantidadeParcelas}}</td>
+						        <td>{{parcela.valorPrimeiraParcela | currency:"R$ ":2}}</td>
+						        <td><input type="radio" name="optradio2" style="width: 20px; height: 20px"></td>
+						      </tr>
+						    </tbody>
+						  </table>
+					</div>
+		  </div>
 
+	</div>	
+						
+<form name="formContrato" class="form-inline" role="form" autocomplete="off" style="margin-top: 4%;">
 	<fieldset class="scheduler-border">
 					<legend class="scheduler-border"><b>Formulário</b></legend>	
 				

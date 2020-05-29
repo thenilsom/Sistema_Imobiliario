@@ -83,14 +83,16 @@
         	
         	if(angular.equals('LIB', tipo)){
         		fiancaService.getTabelaPrecoLiberty({'codigo' : vm.regContrato.codigo}).then(function(response) {
-        			if(response)
-        				vm.tabelaParcelamento = response.p70retornoCalculoFianca.listaPlanosParcelamento;
+        			if(response){
+        				filtrarTabelaPlanosParcelamento(response.p70retornoCalculoFianca.listaPlanosParcelamento.planosParcelamento);
+        			}
         		});
         		
         	}else if(angular.equals('POR', tipo)){
         		fiancaService.getTabelaPrecoPorto({'codigo' : 2935}).then(function(response) {
-        			if(response)
-        				vm.tabelaParcelamento = response.p70retornoCalculoFianca.listaPlanosParcelamento;
+        			if(response){
+        				filtrarTabelaPlanosParcelamento(response.p70retornoCalculoFianca.listaPlanosParcelamento.planosParcelamento);
+        			}
         		});
         	}
         	 
@@ -119,6 +121,22 @@
                   });
         		
         	}
+        }
+        
+        /**
+         * Filtra a tabela de planos do parcelamento
+         */
+        var filtrarTabelaPlanosParcelamento = function(tabela){
+        	var idIni = 1;
+        	tabela.forEach(t=> t.id = idIni++);
+        	vm.listaNaoRecomendada = tabela.filter(t=> (t.formaPagamento.includes('BOLETO') && t.quantidadeParcelas != '1') || 
+									        			(t.formaPagamento.includes('CARNE') && t.quantidadeParcelas != '11' && t.quantidadeParcelas != '12') || 
+									        			t.formaPagamento.includes('DEBITO_CONTA') || 
+									        			t.formaPagamento.includes('BOLETO_DEMAIS_DEBITO_CONTA') || 
+									        			t.formaPagamento.includes('CARTAO_CREDITO_RECORRENTE'));
+        	
+        	vm.listaRecomendada = tabela.filter(t=> listaNaoRecomendada.filter(tn=> tn.id == t.id).length == 0);
+
         }
         
         var validarFormularioContrato = function(){
