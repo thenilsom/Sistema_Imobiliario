@@ -83,14 +83,14 @@
         	
         	if(angular.equals('LIB', tipo)){
         		fiancaService.getTabelaPrecoLiberty({'codigo' : vm.regContrato.codigo}).then(function(response) {
-        			if(response){
+        			if(response && response.p70retornoCalculoFianca && response.p70retornoCalculoFianca.listaPlanosParcelamento){
         				filtrarTabelaPlanosParcelamento(response.p70retornoCalculoFianca.listaPlanosParcelamento.planosParcelamento);
         			}
         		});
         		
         	}else if(angular.equals('POR', tipo)){
         		fiancaService.getTabelaPrecoPorto({'codigo' : 2935}).then(function(response) {
-        			if(response){
+        			if(response && response.p70retornoCalculoFianca && response.p70retornoCalculoFianca.listaPlanosParcelamento){
         				filtrarTabelaPlanosParcelamento(response.p70retornoCalculoFianca.listaPlanosParcelamento.planosParcelamento);
         			}
         		});
@@ -127,7 +127,7 @@
          * Filtra a tabela de planos do parcelamento
          */
         var filtrarTabelaPlanosParcelamento = function(tabela){
-        	var idIni = 1;
+        	var idIni = 0;
         	tabela.forEach(t=> t.id = idIni++);
         	vm.listaNaoRecomendada = tabela.filter(t=> (t.formaPagamento.includes('BOLETO') && t.quantidadeParcelas != '1') || 
 									        			(t.formaPagamento.includes('CARNE') && t.quantidadeParcelas != '11' && t.quantidadeParcelas != '12') || 
@@ -135,7 +135,7 @@
 									        			t.formaPagamento.includes('BOLETO_DEMAIS_DEBITO_CONTA') || 
 									        			t.formaPagamento.includes('CARTAO_CREDITO_RECORRENTE'));
         	
-        	vm.listaRecomendada = tabela.filter(t=> listaNaoRecomendada.filter(tn=> tn.id == t.id).length == 0);
+        	vm.listaRecomendada = tabela.filter(t=> vm.listaNaoRecomendada.filter(tn=> tn.id == t.id).length == 0);
 
         }
         
@@ -150,6 +150,10 @@
         	
         	if(vm.regContrato.CPF_resp_proprietario && !fiancaService.validarCpf(vm.regContrato.CPF_resp_proprietario)){
         		vm.errors.push('CPF Responsável Empresa inválido');
+        	}
+        	
+        	if(!vm.regContrato.forma_pagto){
+        		vm.errors.push('Selecione a forma de pagamento.');
         	}
         }
         

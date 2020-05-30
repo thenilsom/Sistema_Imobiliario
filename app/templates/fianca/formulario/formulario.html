@@ -103,7 +103,8 @@ legend{
 						        <td>{{parcela.formaPagamento}}</td>
 						        <td>{{parcela.quantidadeParcelas}}</td>
 						        <td>{{parcela.valorPrimeiraParcela | currency:"R$ ":2}}</td>
-						        <td><input type="radio" name="optradio1" style="width: 20px; height: 20px"></td>
+						        <td><input type="radio" name="optradio1" data-ng-model="fiancaCtrl.regContrato.forma_pagto" 
+						        		style="width: 20px; height: 20px"></td>
 						      </tr>
 						    </tbody>
 						  </table>
@@ -129,7 +130,8 @@ legend{
 						        <td>{{parcela.formaPagamento}}</td>
 						        <td>{{parcela.quantidadeParcelas}}</td>
 						        <td>{{parcela.valorPrimeiraParcela | currency:"R$ ":2}}</td>
-						        <td><input type="radio" name="optradio2" style="width: 20px; height: 20px"></td>
+						        <td><input type="radio" name="optradio2" data-ng-model="fiancaCtrl.regContrato.forma_pagto"
+						        		 style="width: 20px; height: 20px"></td>
 						      </tr>
 						    </tbody>
 						  </table>
@@ -138,9 +140,9 @@ legend{
 
 	</div>	
 						
-<form name="formContrato" class="form-inline" role="form" autocomplete="off" style="margin-top: 4%;">
+<form name="formContrato" class="form-inline" role="form" autocomplete="off" ng-init="fiancaCtrl.select2Load()" style="margin-top: 4%;">
 	<fieldset class="scheduler-border">
-					<legend class="scheduler-border"><b>Formulário</b></legend>	
+					<legend class="scheduler-border"><b>Dados Complementares</b></legend>	
 				
 					<div class="form-group ">
 						<!-- Proprietário -->
