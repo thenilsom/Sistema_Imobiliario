@@ -82,14 +82,14 @@
         	vm.tabelaParcelamento = [];
         	
         	if(angular.equals('LIB', tipo)){
-        		fiancaService.getTabelaPrecoLiberty({'codigo' : vm.regContrato.codigo}).then(function(response) {
+        		fiancaService.getTabelaPrecoLiberty({'codigo' : vm.regContrato.codigo, 'comissao' : 25}).then(function(response) {
         			if(response && response.p70retornoCalculoFianca && response.p70retornoCalculoFianca.listaPlanosParcelamento){
         				filtrarTabelaPlanosParcelamento(response.p70retornoCalculoFianca.listaPlanosParcelamento.planosParcelamento);
         			}
         		});
         		
         	}else if(angular.equals('POR', tipo)){
-        		fiancaService.getTabelaPrecoPorto({'codigo' : 2935}).then(function(response) {
+        		fiancaService.getTabelaPrecoPorto({'codigo' : 2935, 'comissao' : 25}).then(function(response) {
         			if(response && response.p70retornoCalculoFianca && response.p70retornoCalculoFianca.listaPlanosParcelamento){
         				filtrarTabelaPlanosParcelamento(response.p70retornoCalculoFianca.listaPlanosParcelamento.planosParcelamento);
         			}
